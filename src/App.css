@@ -6,6 +6,14 @@
   height: 40vmin;
 }
 
+.navbar{
+  background-color: purple;
+  height: 50px;
+  text-align: left;
+  margin-top: 0;
+  color: white;
+}
+
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
