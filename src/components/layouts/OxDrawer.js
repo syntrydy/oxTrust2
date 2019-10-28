@@ -11,7 +11,7 @@ import AppMenu from "./OxMenu";
 import logo from "../../assets/logo.png";
 
 const OxDrawer = props => {
-  const { routes,theme,classes,open ,handleDrawerClose} = props;
+  const { routes,theme,classes,open ,handleDrawerClose,hist} = props;
   return (
     <Drawer
       variant="permanent"
@@ -39,7 +39,7 @@ const OxDrawer = props => {
         </IconButton>
       </div>
       <Divider />
-      <AppMenu routes={routes} />
+      <AppMenu routes={routes} hist={hist} />
     </Drawer>
   );
 };

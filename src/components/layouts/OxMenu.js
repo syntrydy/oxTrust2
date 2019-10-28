@@ -2,27 +2,50 @@ import React from "react";
 import List from "@material-ui/core/List";
 import Divider from "@material-ui/core/Divider";
 import ListItem from "@material-ui/core/ListItem";
-import { Link, BrowserRouter as Router } from "react-router-dom";
+import { NavLink} from "react-router-dom";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
+import { makeStyles } from '@material-ui/core/styles';
+import '../../../src/App.css'
 
-const Menu = props => {
-  const { routes } = props;
+
+const useStyles = makeStyles({
+  root: {
+    color: '#19857b'
+  },
+  listItem: {
+    background: "#19857b"
+  }
+});
+
+
+const OxMenu = props => {
+  const { routes} = props;
+  const classes = useStyles();
+  function activeRoute(routeName) {
+    return window.location.href.indexOf(routeName) > -1 ? true : false;
+  }
+  
   return (
     <List>
       {routes.map((prop, key) => (
-        <React.Fragment key={key}>
-          <ListItem button key={prop.name}>
-            <ListItemIcon>
-              <prop.icon color="primary" />
-            </ListItemIcon>
-            <ListItemText primary={prop.name}></ListItemText>
-          </ListItem>
+        <NavLink
+            to={prop.path}
+            activeClassName="active"
+            style={{ textDecoration: 'none'}}
+            onClick={activeRoute}
+            key={key}>  
+            <ListItem button key={prop.name} >
+              <ListItemIcon>
+                <prop.icon color="primary" />
+              </ListItemIcon>
+              <ListItemText primary={prop.name} classes={{root:classes.root}} ></ListItemText>
+            </ListItem>
           {prop.divise && <Divider />}
-        </React.Fragment>
+          </NavLink>
       ))}
     </List>
   );
 };
 
-export default Menu;
+export default OxMenu;
