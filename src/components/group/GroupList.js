@@ -2,9 +2,13 @@ import React,{useState} from 'react'
 import MaterialTable from "material-table";
 import OxTitle from '../layouts/OxTitle';
 import Chip from '@material-ui/core/Chip';
+import {withRouter} from 'react-router-dom'
+
 import { makeStyles } from '@material-ui/core/styles';
 
-const GroupList =()=> {
+
+const GroupList =(props)=> {
+
 
     const classes = makeStyles({
         colorSecondary: {
@@ -12,6 +16,11 @@ const GroupList =()=> {
         }
       });
       const [selection, setSelection] = useState(null);
+      function goToGroupDetailPage(row){
+        console.log("Selected row:"+row);
+        const { history } = props;
+        if(history) history.push(`/group/detail:`+row);  
+      }
 
       return (
         <div style={{ maxWidth: "100%" }}>
@@ -38,11 +47,10 @@ const GroupList =()=> {
             }}
             actions={[
               {
-                icon: "visibility",
+                icon: 'visibility',
                 tooltip: "Show Group detail",
                 iconProps: { color: "primary" },
-                onClick: (event, rowData) =>
-                  alert("You want to show detail of " + rowData.name)
+                onClick: (event, rowData) =>{goToGroupDetailPage(rowData.tableData.id)}
               },
               {
                 icon: "edit",
@@ -101,4 +109,4 @@ const GroupList =()=> {
         </div>
       );
     }
-export default GroupList
+export default withRouter(GroupList)
