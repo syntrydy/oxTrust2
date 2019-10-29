@@ -29,7 +29,7 @@ const OxDrawer = props => {
       elevation={20}
     >
       <div className={classes.toolbar}>
-        <img src={logo} alt="Logo" height="32" width="180" />
+        <img src={logo} alt="Logo" height="32" width="160" />
         <IconButton onClick={handleDrawerClose}>
           {theme.direction === "rtl" ? (
             <ChevronRightIcon />

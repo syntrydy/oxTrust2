@@ -5,8 +5,8 @@ import OxDrawer from "./components/layouts/OxDrawer";
 import OxAppBar from "./components/layouts/OxAppBar";
 import routes from "./routes.js";
 import useStyles from "./assets/jss/oxStyle";
-import AboutPage from "./components/pages/About";
-import GroupPage from "./components/pages/GroupPage";
+import HomePage from "./components/pages/HomePage";
+import GroupsPage from "./components/pages/GroupsPage";
 import { ThemeProvider } from "@material-ui/styles";
 import theme from "./theme/Theme";
 import { createBrowserHistory } from "history";
@@ -44,8 +44,8 @@ export default function MyDrawer() {
           <main className={classes.content}>
             <div className={classes.toolbar} />
             <Switch>
-              <Route path="/home" exact component={AboutPage} />
-              <Route path="/groups" exact component={GroupPage} />
+              <Route path="/home" exact component={HomePage} />
+              <Route path="/groups" exact component={GroupsPage} />
             </Switch>
           </main>
         </div>

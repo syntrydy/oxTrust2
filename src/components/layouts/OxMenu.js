@@ -12,9 +12,6 @@ import '../../../src/App.css'
 const useStyles = makeStyles({
   root: {
     color: '#19857b'
-  },
-  listItem: {
-    background: "#19857b"
   }
 });
 
