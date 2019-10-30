@@ -7,7 +7,9 @@ import routes from "./routes.js";
 import useStyles from "./assets/jss/oxStyle";
 import HomePage from "./components/pages/HomePage";
 import GroupsPage from "./components/pages/GroupsPage";
+import UsersPage from "./components/pages/UsersPage";
 import GroupDetailPage from "./components/pages/GroupDetailPage";
+import GroupAddPage from "./components/pages/GroupAddPage";
 import { ThemeProvider } from "@material-ui/styles";
 import theme from "./theme/Theme";
 import { createBrowserHistory } from "history";
@@ -48,8 +50,10 @@ export default function MyDrawer() {
               <Route path="/home" exact component={HomePage} />
               <Route path="/groups" exact component={GroupsPage} />
               <Route path='/group/detail:gid' exact component={GroupDetailPage} />
-              <Route path="/group/add" exact component={GroupsPage} />
+              <Route path="/group/add" exact component={GroupAddPage} />
               <Route path="/group/edit" exact component={GroupsPage} />
+
+              <Route path="/users" exact component={UsersPage} />
             </Switch>
           </main>
         </div>

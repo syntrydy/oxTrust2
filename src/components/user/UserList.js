@@ -4,21 +4,16 @@ import OxTitle from "../layouts/OxTitle";
 import Chip from "@material-ui/core/Chip";
 import { withRouter } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
-const GroupList = props => {
+const UserList = props => {
   const items = [
-    {
-      icon: "add",
-      text: "group",
-      handle:goToGroupAddPage
-    },
     {
       icon: "add",
       text: "user"
     },
     {
       icon: "list",
-      text: "Users",
-      handle:goToUsersPage
+      text: "Groups",
+      handle: goToGroupsPage
     }
   ];
 
@@ -28,21 +23,17 @@ const GroupList = props => {
     }
   });
   const [selection, setSelection] = useState(null);
-  function goToGroupDetailPage(row) {
+  function goToUserDetailPage(row) {
     const { history } = props;
-    if (history) history.push(`/group/detail:` + row);
+    if (history) history.push(`/user/detail:` + row);
   }
-  function goToUsersPage() {
+  function goToGroupsPage() {
     const { history } = props;
-    if (history) history.push('/users');
-  }
-  function goToGroupAddPage() {
-    const { history } = props;
-    if (history) history.push('/group/add');
+    if (history) history.push("/groups");
   }
   function showDialogBox(id) {
     console.log("=========== " + id);
-    alert("Want to delete group with id "+id);
+    alert("Want to delete group with id " + id);
   }
 
   return (
@@ -50,9 +41,9 @@ const GroupList = props => {
       <MaterialTable
         title={<OxTitle items={items} />}
         columns={[
-          { title: "Name", field: "name" },
-          { title: "Description", field: "description" },
-          { title: "#Members", field: "members", type: "numeric" },
+          { title: "Usernane", field: "username" },
+          { title: "Display Name", field: "displayname" },
+          { title: "Email", field: "email" },
           {
             title: "Status",
             field: "status",
@@ -84,21 +75,21 @@ const GroupList = props => {
         actions={[
           {
             icon: "visibility",
-            tooltip: "Show Group detail",
+            tooltip: "Show User detail",
             iconProps: { color: "primary" },
             onClick: (event, rowData) => {
-              goToGroupDetailPage(rowData.tableData.id);
+              goToUserDetailPage(rowData.tableData.id);
             }
           },
           {
             icon: "edit",
-            tooltip: "Edit Group",
+            tooltip: "Edit User",
             iconProps: { color: "primary" },
             onClick: (event, rowData) => alert("You saved " + rowData.name)
           },
           {
             icon: "delete",
-            tooltip: "Delete Group",
+            tooltip: "Delete User",
             iconProps: { color: "error" },
             onClick: (event, rowData) => {
               showDialogBox(rowData.tableData.id);
@@ -107,40 +98,22 @@ const GroupList = props => {
         ]}
         data={[
           {
-            name: "Administrators",
-            description: " Group for administrators",
-            members: 10,
+            username: "William",
+            displayname: "William",
+            email: "William@mail.com",
             status: "active"
           },
           {
-            name: "Managers",
-            description: " Group for manager",
-            members: 6,
+            username: "Mustafa",
+            displayname: "Mustafa",
+            email: "must@mail.com",
+            status: "active"
+          },
+          {
+            username: "Rolain",
+            displayname: "Rolain",
+            email: "rola@mail.com",
             status: "inactive"
-          },
-          {
-            name: "Guest",
-            description: " Group for guests",
-            members: 2,
-            status: "active"
-          },
-          {
-            name: "Guest",
-            description: " Group for guests",
-            members: 2,
-            status: "active"
-          },
-          {
-            name: "Guest",
-            description: " Group for guests",
-            members: 2,
-            status: "active"
-          },
-          {
-            name: "Guest",
-            description: " Group for guests",
-            members: 2,
-            status: "active"
           }
         ]}
         onRowClick={(evt, row) => setSelection(row)}
@@ -148,4 +121,4 @@ const GroupList = props => {
     </div>
   );
 };
-export default withRouter(GroupList);
+export default withRouter(UserList);

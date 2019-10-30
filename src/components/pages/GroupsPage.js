@@ -2,10 +2,17 @@ import React from "react";
 import GroupList from "../group/GroupList";
 import OxBreadCumb from "../layouts/OxBreadCumb";
 
-const GroupsPage = () => {
+const breads = [
+  {
+    path: "/groups",
+    text: "Groups"
+  }
+];
+
+const GroupsPage = (props) => {
   return (
     <div>
-      <OxBreadCumb />
+      <OxBreadCumb breads={breads}/>
       <div style={{height:'5px'}}></div>
       <GroupList />
     </div>
