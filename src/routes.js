@@ -22,7 +22,7 @@ const routes = [
     divise: false
   },
   {
-    path: "/openid",
+    path: "/openid/clients",
     name: "OpenID Connect",
     icon: OpenIdIcon,
     divise: false

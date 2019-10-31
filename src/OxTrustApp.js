@@ -8,6 +8,9 @@ import useStyles from "./assets/jss/oxStyle";
 import HomePage from "./components/pages/HomePage";
 import GroupsPage from "./components/pages/GroupsPage";
 import UsersPage from "./components/pages/UsersPage";
+import SamlPage from "./components/pages/TrustsPage";
+import OpenIdClientsPage from "./components/pages/OpenIdClientsPage";
+import OpenIdScopesPage from "./components/pages/OpenIdScopesPage";
 import GroupDetailPage from "./components/pages/GroupDetailPage";
 import GroupAddPage from "./components/pages/GroupAddPage";
 import { ThemeProvider } from "@material-ui/styles";
@@ -54,6 +57,11 @@ export default function MyDrawer() {
               <Route path="/group/edit" exact component={GroupsPage} />
 
               <Route path="/users" exact component={UsersPage} />
+
+              <Route path="/saml" exact component={SamlPage} />
+
+              <Route path="/openid/clients" exact component={OpenIdClientsPage} />
+              <Route path="/openid/scopes" exact component={OpenIdScopesPage} />
             </Switch>
           </main>
         </div>

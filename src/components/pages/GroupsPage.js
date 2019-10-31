@@ -9,12 +9,51 @@ const breads = [
   }
 ];
 
-const GroupsPage = (props) => {
+const data = [
+  {
+    name: "Administrators",
+    description: " Group for administrators",
+    members: 10,
+    status: "active"
+  },
+  {
+    name: "Managers",
+    description: " Group for manager",
+    members: 6,
+    status: "inactive"
+  },
+  {
+    name: "Guest",
+    description: " Group for guests",
+    members: 2,
+    status: "active"
+  },
+  {
+    name: "Guest",
+    description: " Group for guests",
+    members: 2,
+    status: "active"
+  },
+  {
+    name: "Guest",
+    description: " Group for guests",
+    members: 2,
+    status: "active"
+  },
+  {
+    name: "Guest",
+    description: " Group for guests",
+    members: 2,
+    status: "active"
+  }
+];
+
+const GroupsPage = props => {
   return (
     <div>
-      <OxBreadCumb breads={breads}/>
-      <div style={{height:'5px'}}></div>
-      <GroupList />
+      <OxBreadCumb breads={breads} />
+      <div style={{ height: "5px" }}></div>
+      <GroupList data={data} />
     </div>
   );
 };
