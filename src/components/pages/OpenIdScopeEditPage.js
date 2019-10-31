@@ -1,14 +1,11 @@
 import React from "react";
-import GroupDetail from "../group/GroupShortDetail";
 import OxBreadCumb from "../layouts/OxBreadCumb";
 
-
-const GroupDetailPage = props => {
-  const groupId = props.match.params.gid;
+const OpenIdScopeEditPage = props => {
   const breads = [
     {
-      path: "/groups",
-      text: "Groups"
+      path: "/openid/scopes",
+      text: "OpenIdConnect Scopes"
     },
     {
       path: "",
@@ -19,9 +16,7 @@ const GroupDetailPage = props => {
     <div>
       <OxBreadCumb breads={breads} />
       <div style={{ height: "5px" }}></div>
-      <GroupDetail groupId={groupId} />
     </div>
   );
 };
-
-export default GroupDetailPage;
+export default OpenIdScopeEditPage;

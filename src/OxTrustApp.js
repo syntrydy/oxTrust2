@@ -6,13 +6,23 @@ import OxAppBar from "./components/layouts/OxAppBar";
 import routes from "./routes.js";
 import useStyles from "./assets/jss/oxStyle";
 import HomePage from "./components/pages/HomePage";
+
 import GroupsPage from "./components/pages/GroupsPage";
+import GroupDetailPage from "./components/pages/GroupDetailPage";
+import GroupEditPage from "./components/pages/GroupEditPage";
+import GroupAddPage from "./components/pages/GroupAddPage";
+
 import UsersPage from "./components/pages/UsersPage";
 import SamlPage from "./components/pages/TrustsPage";
+
 import OpenIdClientsPage from "./components/pages/OpenIdClientsPage";
+import OpenIdClientDetailPage from "./components/pages/OpenIdClientDetailPage";
+import OpenIdClientEditPage from "./components/pages/OpenIdClientEditPage";
+
 import OpenIdScopesPage from "./components/pages/OpenIdScopesPage";
-import GroupDetailPage from "./components/pages/GroupDetailPage";
-import GroupAddPage from "./components/pages/GroupAddPage";
+import OpenIdScopeDetailPage from "./components/pages/OpenIdScopeDetailPage";
+import OpenIdScopeEditPage from "./components/pages/OpenIdScopeEditPage";
+
 import { ThemeProvider } from "@material-ui/styles";
 import theme from "./theme/Theme";
 import { createBrowserHistory } from "history";
@@ -52,16 +62,55 @@ export default function MyDrawer() {
             <Switch>
               <Route path="/home" exact component={HomePage} />
               <Route path="/groups" exact component={GroupsPage} />
-              <Route path='/group/detail:gid' exact component={GroupDetailPage} />
               <Route path="/group/add" exact component={GroupAddPage} />
-              <Route path="/group/edit" exact component={GroupsPage} />
+              <Route path="/group/edit:gid" exact component={GroupEditPage} />
+              <Route
+                path="/group/detail:gid"
+                exact
+                component={GroupDetailPage}
+              />
 
               <Route path="/users" exact component={UsersPage} />
 
               <Route path="/saml" exact component={SamlPage} />
 
-              <Route path="/openid/clients" exact component={OpenIdClientsPage} />
+              <Route
+                path="/openid/clients"
+                exact
+                component={OpenIdClientsPage}
+              />
+              <Route
+                path="/openid/client/add"
+                exact
+                component={OpenIdClientsPage}
+              />
+              <Route
+                path="/openid/client/edit:gid"
+                exact
+                component={OpenIdClientEditPage}
+              />
+              <Route
+                path="/openid/client/detail:gid"
+                exact
+                component={OpenIdClientDetailPage}
+              />
+
               <Route path="/openid/scopes" exact component={OpenIdScopesPage} />
+              <Route
+                path="/openid/scope/add"
+                exact
+                component={OpenIdClientsPage}
+              />
+              <Route
+                path="/openid/scope/edit:gid"
+                exact
+                component={OpenIdScopeEditPage}
+              />
+              <Route
+                path="/openid/scope/detail:gid"
+                exact
+                component={OpenIdScopeDetailPage}
+              />
             </Switch>
           </main>
         </div>

@@ -4,6 +4,7 @@ import OxTitle from "../layouts/OxTitle";
 import Chip from "@material-ui/core/Chip";
 import { withRouter } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
+import AcceptDialog from "../layouts/OxAcceptDialog";
 const UserList = props => {
   const items = [
     {
@@ -16,24 +17,32 @@ const UserList = props => {
       handle: goToGroupsPage
     }
   ];
-
   const classes = makeStyles({
     colorSecondary: {
       background: "#8b0000"
     }
   });
   const [selection, setSelection] = useState(null);
+  const [open, setOpen] = React.useState(false);
+  const [row, setRow] = React.useState(null);
+  const handleClose = () => {
+    setOpen(false);
+  };
   function goToUserDetailPage(row) {
     const { history } = props;
     if (history) history.push(`/user/detail:` + row);
+  }
+  function goToUserEditPage(row) {
+    const { history } = props;
+    if (history) history.push(`/user/edit:` + row);
   }
   function goToGroupsPage() {
     const { history } = props;
     if (history) history.push("/groups");
   }
-  function showDialogBox(id) {
-    console.log("=========== " + id);
-    alert("Want to delete group with id " + id);
+  function showDialogBox(name) {
+    setRow(name);
+    setOpen(true);
   }
 
   return (
@@ -85,14 +94,16 @@ const UserList = props => {
             icon: "edit",
             tooltip: "Edit User",
             iconProps: { color: "primary" },
-            onClick: (event, rowData) => alert("You saved " + rowData.name)
+            onClick: (event, rowData) => {
+              goToUserEditPage(rowData.tableData.id);
+            }
           },
           {
             icon: "delete",
             tooltip: "Delete User",
             iconProps: { color: "error" },
             onClick: (event, rowData) => {
-              showDialogBox(rowData.tableData.id);
+              showDialogBox(rowData.username);
             }
           }
         ]}
@@ -118,6 +129,7 @@ const UserList = props => {
         ]}
         onRowClick={(evt, row) => setSelection(row)}
       />
+      <AcceptDialog row={row} handleClose={handleClose} open={open} />
     </div>
   );
 };

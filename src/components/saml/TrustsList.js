@@ -4,6 +4,7 @@ import OxTitle from "../layouts/OxTitle";
 import Chip from "@material-ui/core/Chip";
 import { withRouter } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
+import AcceptDialog from "../layouts/OxAcceptDialog";
 const TrustsList = props => {
   const items = [
     {
@@ -19,17 +20,26 @@ const TrustsList = props => {
     }
   });
   const [selection, setSelection] = useState(null);
+  const [open, setOpen] = React.useState(false);
+  const [row, setRow] = React.useState(null);
+  const handleClose = () => {
+    setOpen(false);
+  };
   function goToTrustDetailPage(row) {
     const { history } = props;
     if (history) history.push(`/saml/detail:` + row);
+  }
+  function goToTrustEditPage(row) {
+    const { history } = props;
+    if (history) history.push(`/saml/edit:` + row);
   }
   function goToTrustAddPage() {
     const { history } = props;
     if (history) history.push('/saml/add');
   }
-  function showDialogBox(id) {
-    console.log("=========== " + id);
-    alert("Want to delete trust with id "+id);
+  function showDialogBox(name) {
+    setRow(name);
+    setOpen(true);
   }
 
   return (
@@ -92,20 +102,21 @@ const TrustsList = props => {
             icon: "edit",
             tooltip: "Edit trust",
             iconProps: { color: "primary" },
-            onClick: (event, rowData) => alert("You saved " + rowData.name)
+            onClick: (event, rowData) => {goToTrustEditPage(rowData.inum)}
           },
           {
             icon: "delete",
             tooltip: "Delete trust",
             iconProps: { color: "error" },
             onClick: (event, rowData) => {
-              showDialogBox(rowData.tableData.id);
+              showDialogBox(rowData.displayname);
             }
           }
         ]}
         data={props.data}
         onRowClick={(evt, row) => setSelection(row)}
       />
+      <AcceptDialog row={row} handleClose={handleClose} open={open} />
     </div>
   );
 };

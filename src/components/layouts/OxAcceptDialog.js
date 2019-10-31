@@ -5,7 +5,7 @@ import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
-import DeleteIcon from "@material-ui/icons/Delete";
+import Divider from "@material-ui/core/Divider";
 import Paper from "@material-ui/core/Paper";
 import Draggable from "react-draggable";
 
@@ -18,45 +18,34 @@ function PaperComponent(props) {
 }
 
 const OxAcceptDialog = props => {
-  const [open, setOpen] = React.useState(false);
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-  const handleClose = () => {
-    setOpen(false);
-  };
+  const {open,row,handleClose} = props;
 
   return (
-    <div>
-      <DeleteIcon
-        variant="outlined"
-        color="error"
-        onClick={handleClickOpen}
-      ></DeleteIcon>
-      <Dialog
-        open={open}
-        onClose={handleClose}
-        PaperComponent={PaperComponent}
-        aria-labelledby="draggable-dialog-title"
-      >
-        <DialogTitle style={{ cursor: "move" }} id="draggable-dialog-title">
-          Deletion
-        </DialogTitle>
-        <DialogContent>
-          <DialogContentText>
-            Do you really want to delete this item.
-          </DialogContentText>
-        </DialogContent>
-        <DialogActions>
-          <Button autoFocus onClick={handleClose} color="primary">
-            Cancel
-          </Button>
-          <Button onClick={handleClose} color="primary">
-            Okay
-          </Button>
-        </DialogActions>
-      </Dialog>
-    </div>
+    <Dialog
+      open={open}
+      onClose={handleClose}
+      PaperComponent={PaperComponent}
+      aria-labelledby="draggable-dialog-title"
+    >
+      <DialogTitle style={{ cursor: "move",color:'green' }} id="draggable-dialog-title">
+        Deletion Confirmation Dialog
+        <Divider />
+      </DialogTitle>
+
+      <DialogContent>
+        <DialogContentText>
+        Do you really want to delete <span style={{color: 'red'}}>{row}</span> ?
+        </DialogContentText>
+      </DialogContent>
+      <DialogActions>
+        <Button autoFocus onClick={handleClose} color="primary">
+          Cancel
+        </Button>
+        <Button onClick={handleClose} color="primary">
+          Okay
+        </Button>
+      </DialogActions>
+    </Dialog>
   );
 };
 export default OxAcceptDialog;

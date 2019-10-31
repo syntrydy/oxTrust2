@@ -2,42 +2,45 @@ import React, { useState } from "react";
 import MaterialTable from "material-table";
 import OxTitle from "../layouts/OxTitle";
 import { withRouter } from "react-router-dom";
-import { makeStyles } from "@material-ui/core/styles";
+import AcceptDialog from "../layouts/OxAcceptDialog";
 const OpenIdScopeList = props => {
   const items = [
     {
       icon: "add",
       text: "Scope",
-      handle:goToScopeAddPage
+      handle: goToScopeAddPage
     },
     {
       icon: "list",
       text: "Clients",
-      handle:goToClientsPage
+      handle: goToClientsPage
     }
   ];
-
-  const classes = makeStyles({
-    colorSecondary: {
-      background: "#8b0000"
-    }
-  });
   const [selection, setSelection] = useState(null);
+  const [open, setOpen] = React.useState(false);
+  const [row, setRow] = React.useState(null);
+  const handleClose = () => {
+    setOpen(false);
+  };
   function goToScopeDetailPage(row) {
     const { history } = props;
     if (history) history.push(`/openid/scope/detail:` + row);
   }
+  function goToScopeEditPage(row) {
+    const { history } = props;
+    if (history) history.push(`/openid/scope/edit:` + row);
+  }
   function goToClientsPage() {
     const { history } = props;
-    if (history) history.push('/openid/clients');
+    if (history) history.push("/openid/clients");
   }
   function goToScopeAddPage() {
     const { history } = props;
-    if (history) history.push('/openid/scope/add');
+    if (history) history.push("/openid/scope/add");
   }
-  function showDialogBox(id) {
-    console.log("=========== " + id);
-    alert("Want to delete scope with id "+id);
+  function showDialogBox(name) {
+    setRow(name);
+    setOpen(true);
   }
 
   return (
@@ -48,7 +51,11 @@ const OpenIdScopeList = props => {
           { title: "Inum", field: "inum" },
           { title: "Display Name", field: "displayname" },
           { title: "Description", field: "description" },
-          { title: "Dynamic registration",field: "registation",type: "boolean"}
+          {
+            title: "Dynamic registration",
+            field: "registation",
+            type: "boolean"
+          }
         ]}
         options={{
           actionsColumnIndex: -1,
@@ -79,22 +86,24 @@ const OpenIdScopeList = props => {
             icon: "edit",
             tooltip: "Edit Scope",
             iconProps: { color: "primary" },
-            onClick: (event, rowData) => alert("You saved " + rowData.name)
+            onClick: (event, rowData) => {
+              goToScopeEditPage(rowData.inum);
+            }
           },
           {
             icon: "delete",
             tooltip: "Delete Scope",
             iconProps: { color: "error" },
             onClick: (event, rowData) => {
-              showDialogBox(rowData.tableData.id);
+              showDialogBox(rowData.displayname);
             }
           }
         ]}
         data={props.data}
         onRowClick={(evt, row) => setSelection(row)}
       />
+      <AcceptDialog row={row} handleClose={handleClose} open={open} />
     </div>
   );
 };
 export default withRouter(OpenIdScopeList);
-
