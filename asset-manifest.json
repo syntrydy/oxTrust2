@@ -1,22 +1,22 @@
 {
   "files": {
     "main.css": "/oxTrust2/static/css/main.b9e16efc.chunk.css",
-    "main.js": "/oxTrust2/static/js/main.bca378e2.chunk.js",
-    "main.js.map": "/oxTrust2/static/js/main.bca378e2.chunk.js.map",
+    "main.js": "/oxTrust2/static/js/main.a4481bc7.chunk.js",
+    "main.js.map": "/oxTrust2/static/js/main.a4481bc7.chunk.js.map",
     "runtime-main.js": "/oxTrust2/static/js/runtime-main.421eea49.js",
     "runtime-main.js.map": "/oxTrust2/static/js/runtime-main.421eea49.js.map",
-    "static/js/2.65269dae.chunk.js": "/oxTrust2/static/js/2.65269dae.chunk.js",
-    "static/js/2.65269dae.chunk.js.map": "/oxTrust2/static/js/2.65269dae.chunk.js.map",
+    "static/js/2.5d915b1a.chunk.js": "/oxTrust2/static/js/2.5d915b1a.chunk.js",
+    "static/js/2.5d915b1a.chunk.js.map": "/oxTrust2/static/js/2.5d915b1a.chunk.js.map",
     "index.html": "/oxTrust2/index.html",
-    "precache-manifest.c121253cbd1b0c84fcd1509229ad4b82.js": "/oxTrust2/precache-manifest.c121253cbd1b0c84fcd1509229ad4b82.js",
+    "precache-manifest.ca271132fb7d7486f32a85fdfa34bd53.js": "/oxTrust2/precache-manifest.ca271132fb7d7486f32a85fdfa34bd53.js",
     "service-worker.js": "/oxTrust2/service-worker.js",
     "static/css/main.b9e16efc.chunk.css.map": "/oxTrust2/static/css/main.b9e16efc.chunk.css.map",
     "static/media/logo.png": "/oxTrust2/static/media/logo.82ed0180.png"
   },
   "entrypoints": [
     "static/js/runtime-main.421eea49.js",
-    "static/js/2.65269dae.chunk.js",
+    "static/js/2.5d915b1a.chunk.js",
     "static/css/main.b9e16efc.chunk.css",
-    "static/js/main.bca378e2.chunk.js"
+    "static/js/main.a4481bc7.chunk.js"
   ]
 }
