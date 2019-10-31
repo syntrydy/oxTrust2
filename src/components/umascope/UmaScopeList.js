@@ -1,59 +1,44 @@
 import React, { useState } from "react";
 import MaterialTable from "material-table";
 import OxTitle from "../layouts/OxTitle";
-import Chip from "@material-ui/core/Chip";
 import { withRouter } from "react-router-dom";
-import { makeStyles } from "@material-ui/core/styles";
 import AcceptDialog from "../layouts/OxAcceptDialog";
-const TrustsList = props => {
+const UmaScopeList = props => {
   const items = [
     {
       icon: "add",
-      text: "Trust",
-      handle:goToTrustAddPage
-    },
-    {
-      icon: "add",
-      text: "ACR",
-      handle:goToAcrAddPage
+      text: "Scope",
+      handle: goToUmaScopeAddPage
     },
     {
       icon: "list",
-      text: "ACRS",
-      handle:goToAcrsPage
+      text: "Uma Resources",
+      handle: goToUmaResourcesPage
     }
   ];
 
-  const classes = makeStyles({
-    colorSecondary: {
-      background: "#8b0000"
-    }
-  });
   const [selection, setSelection] = useState(null);
   const [open, setOpen] = React.useState(false);
   const [row, setRow] = React.useState(null);
   const handleClose = () => {
     setOpen(false);
   };
-  function goToTrustDetailPage(row) {
+
+  function goToUmaScopeDetailPage(row) {
     const { history } = props;
-    if (history) history.push(`/saml/trust/detail:` + row);
+    if (history) history.push(`/uma/scope/detail:` + row);
   }
-  function goToTrustEditPage(row) {
+  function goToUmaResourcesPage(row) {
     const { history } = props;
-    if (history) history.push(`/saml/trust/edit:` + row);
+    if (history) history.push(`/uma/resources`);
   }
-  function goToTrustAddPage() {
+  function goToUmaScopeEditPage(row) {
     const { history } = props;
-    if (history) history.push('/saml/trust/add');
+    if (history) history.push(`/uma/scope/edit:` + row);
   }
-  function goToAcrAddPage() {
+  function goToUmaScopeAddPage() {
     const { history } = props;
-    if (history) history.push('/saml/acr/add');
-  }
-  function goToAcrsPage() {
-    const { history } = props;
-    if (history) history.push('/saml/acrs');
+    if (history) history.push("/uma/scope/add");
   }
   function showDialogBox(name) {
     setRow(name);
@@ -66,30 +51,8 @@ const TrustsList = props => {
         title={<OxTitle items={items} />}
         columns={[
           { title: "Inum", field: "inum" },
-          { title: "Display Name", field: "displayname" },
-          { title: "Type", field: "type", type: "numeric" },
-          {
-            title: "Validation",
-            field: "validation",
-            render: rowData => (
-              <Chip
-                classes={{ colorSecondary: classes.colorSecondary }}
-                color="primary"
-                label={rowData.validation}
-              />
-            )
-          },
-          {
-            title: "Status",
-            field: "type",
-            render: rowData => (
-              <Chip
-                classes={{ colorSecondary: classes.colorSecondary }}
-                color="primary"
-                label={rowData.status}
-              />
-            )
-          }
+          { title: "DisplayName", field: "displayname" },
+          { title: "Action", field: "action" }
         ]}
         options={{
           actionsColumnIndex: -1,
@@ -110,24 +73,26 @@ const TrustsList = props => {
         actions={[
           {
             icon: "visibility",
-            tooltip: "Show trust detail",
+            tooltip: "Show uma scope detail",
             iconProps: { color: "primary" },
             onClick: (event, rowData) => {
-              goToTrustDetailPage(rowData.tableData.id);
+              goToUmaScopeDetailPage(rowData.tableData.id);
             }
           },
           {
             icon: "edit",
-            tooltip: "Edit trust",
+            tooltip: "Edit uma scope",
             iconProps: { color: "primary" },
-            onClick: (event, rowData) => {goToTrustEditPage(rowData.inum)}
+            onClick: (event, rowData) => {
+              goToUmaScopeEditPage(rowData.tableData.id);
+            }
           },
           {
             icon: "delete",
-            tooltip: "Delete trust",
+            tooltip: "Delete uma scope",
             iconProps: { color: "error" },
             onClick: (event, rowData) => {
-              showDialogBox(rowData.displayname);
+              showDialogBox(rowData.name);
             }
           }
         ]}
@@ -138,4 +103,4 @@ const TrustsList = props => {
     </div>
   );
 };
-export default withRouter(TrustsList);
+export default withRouter(UmaScopeList);

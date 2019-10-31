@@ -15,6 +15,8 @@ import GroupAddPage from "./components/pages/GroupAddPage";
 import UsersPage from "./components/pages/UsersPage";
 import SamlPage from "./components/pages/TrustsPage";
 
+import AttributePage from "./components/pages/AttributesPage";
+
 import OpenIdClientsPage from "./components/pages/OpenIdClientsPage";
 import OpenIdClientDetailPage from "./components/pages/OpenIdClientDetailPage";
 import OpenIdClientEditPage from "./components/pages/OpenIdClientEditPage";
@@ -22,6 +24,9 @@ import OpenIdClientEditPage from "./components/pages/OpenIdClientEditPage";
 import OpenIdScopesPage from "./components/pages/OpenIdScopesPage";
 import OpenIdScopeDetailPage from "./components/pages/OpenIdScopeDetailPage";
 import OpenIdScopeEditPage from "./components/pages/OpenIdScopeEditPage";
+
+import UmaResourcesPage from "./components/pages/UmaResourcesPage";
+import UmaScopesPage from "./components/pages/UmaScopesPage";
 
 import { ThemeProvider } from "@material-ui/styles";
 import theme from "./theme/Theme";
@@ -72,7 +77,11 @@ export default function MyDrawer() {
 
               <Route path="/users" exact component={UsersPage} />
 
-              <Route path="/saml" exact component={SamlPage} />
+              <Route path="/saml/trusts" exact component={SamlPage} />
+
+              <Route path="/uma/resources" exact component={UmaResourcesPage} />
+
+              <Route path="/uma/scopes" exact component={UmaScopesPage} />
 
               <Route
                 path="/openid/clients"
@@ -111,6 +120,8 @@ export default function MyDrawer() {
                 exact
                 component={OpenIdScopeDetailPage}
               />
+
+              <Route path="/attributes" exact component={AttributePage} />
             </Switch>
           </main>
         </div>

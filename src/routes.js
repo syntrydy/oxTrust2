@@ -28,7 +28,7 @@ const routes = [
     divise: false
   },
   {
-    path: "/saml",
+    path: "/saml/trusts",
     name: "SAML Trusts",
     icon: SamlIcon,
     divise: false
@@ -46,7 +46,7 @@ const routes = [
     divise: false
   },
   {
-    path: "/uma",
+    path: "/uma/resources",
     name: "Uma",
     icon: UmaIcon,
     layout: "/admin",

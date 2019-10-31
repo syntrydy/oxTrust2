@@ -5,49 +5,34 @@ import Chip from "@material-ui/core/Chip";
 import { withRouter } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import AcceptDialog from "../layouts/OxAcceptDialog";
-const UserList = props => {
+const AttributeList = props => {
   const items = [
     {
       icon: "add",
-      text: "user"
-    },
-    {
-      icon: "list",
-      text: "Groups",
-      handle: goToGroupsPage
-    },
-    {
-      icon: "share",
-      text: "Import",
-      handle: goToImportPage
+      text: "Attribute",
+      handle: goToAttributeAddPage
     }
   ];
-  const classes = makeStyles({
-    colorSecondary: {
-      background: "#8b0000"
-    }
-  });
+
+  const classes = makeStyles({ colorSecondary: { background: "#8b0000" } });
   const [selection, setSelection] = useState(null);
   const [open, setOpen] = React.useState(false);
   const [row, setRow] = React.useState(null);
   const handleClose = () => {
     setOpen(false);
   };
-  function goToUserDetailPage(row) {
+
+  function goToAttributeDetailPage(row) {
     const { history } = props;
-    if (history) history.push(`/user/detail:` + row);
+    if (history) history.push(`/attribute/detail:` + row);
   }
-  function goToUserEditPage(row) {
+  function goToAttributeEditPage(row) {
     const { history } = props;
-    if (history) history.push(`/user/edit:` + row);
+    if (history) history.push(`/attribute/edit:` + row);
   }
-  function goToGroupsPage() {
+  function goToAttributeAddPage() {
     const { history } = props;
-    if (history) history.push("/groups");
-  }
-  function goToImportPage() {
-    const { history } = props;
-    if (history) history.push("/user/import");
+    if (history) history.push("/attribute/add");
   }
   function showDialogBox(name) {
     setRow(name);
@@ -59,9 +44,10 @@ const UserList = props => {
       <MaterialTable
         title={<OxTitle items={items} />}
         columns={[
-          { title: "Usernane", field: "username" },
-          { title: "Display Name", field: "displayname" },
-          { title: "Email", field: "email" },
+          { title: "Origin", field: "origin" },
+          { title: "DisplayName", field: "displayname" },
+          { title: "Name", field: "name" },
+          { title: "Description", field: "description" },
           {
             title: "Status",
             field: "status",
@@ -93,53 +79,34 @@ const UserList = props => {
         actions={[
           {
             icon: "visibility",
-            tooltip: "Show User detail",
+            tooltip: "Show attribute detail",
             iconProps: { color: "primary" },
             onClick: (event, rowData) => {
-              goToUserDetailPage(rowData.tableData.id);
+              goToAttributeDetailPage(rowData.tableData.id);
             }
           },
           {
             icon: "edit",
-            tooltip: "Edit User",
+            tooltip: "Edit attribute",
             iconProps: { color: "primary" },
             onClick: (event, rowData) => {
-              goToUserEditPage(rowData.tableData.id);
+              goToAttributeEditPage(rowData.tableData.id);
             }
           },
           {
             icon: "delete",
-            tooltip: "Delete User",
+            tooltip: "Delete attribute",
             iconProps: { color: "error" },
             onClick: (event, rowData) => {
-              showDialogBox(rowData.username);
+              showDialogBox(rowData.name);
             }
           }
         ]}
-        data={[
-          {
-            username: "William",
-            displayname: "William",
-            email: "William@mail.com",
-            status: "active"
-          },
-          {
-            username: "Mustafa",
-            displayname: "Mustafa",
-            email: "must@mail.com",
-            status: "active"
-          },
-          {
-            username: "Rolain",
-            displayname: "Rolain",
-            email: "rola@mail.com",
-            status: "inactive"
-          }
-        ]}
+        data={props.data}
         onRowClick={(evt, row) => setSelection(row)}
       />
       <AcceptDialog row={row} handleClose={handleClose} open={open} />
     </div>
   );
 };
-export default withRouter(UserList);
+export default withRouter(AttributeList);
