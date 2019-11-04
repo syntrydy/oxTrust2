@@ -1,1 +1,0 @@
-{"version":3,"sources":["App.css"],"names":[],"mappings":"AAAA,QACE,qBAAsB,CACtB,eAAe,CACf,UACF","file":"main.b9e16efc.chunk.css","sourcesContent":[".active {\n  background-color: blue;\n  background:blue;\n  color: blue;\n}\n"]}
