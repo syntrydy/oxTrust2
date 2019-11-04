@@ -11,6 +11,16 @@ const AttributeList = props => {
       icon: "add",
       text: "Attribute",
       handle: goToAttributeAddPage
+    },
+    {
+      icon: "redo",
+      text: "Import",
+      handle: goToImportPage
+    },
+    {
+      icon: "undo",
+      text: "Export",
+      handle: goToExportPage
     }
   ];
 
@@ -33,6 +43,14 @@ const AttributeList = props => {
   function goToAttributeAddPage() {
     const { history } = props;
     if (history) history.push("/attribute/add");
+  }
+  function goToImportPage() {
+    const { history } = props;
+    if (history) history.push("/attribute/import");
+  }
+  function goToExportPage() {
+    const { history } = props;
+    if (history) history.push("/attribute/export");
   }
   function showDialogBox(name) {
     setRow(name);

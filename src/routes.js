@@ -1,16 +1,18 @@
 // @material-ui/icons
 import Dashboard from "@material-ui/icons/DragIndicator";
-import OpenIdIcon from "@material-ui/icons/PanTool";
+import OpenIdIcon from "@material-ui/icons/Security";
 import SettingsIcon from "@material-ui/icons/Settings";
 import PeopleIcon from "@material-ui/icons/People";
 import AttributeIcon from "@material-ui/icons/GavelRounded";
+import PassportIcon from "@material-ui/icons/CardTravel";
 import UmaIcon from "@material-ui/icons/Usb";
 import SamlIcon from "@material-ui/icons/Filter9Plus";
 import RaduisIcon from "@material-ui/icons/FiberPin";
+import CertificatesIcon from "@material-ui/icons/School";
 
 const routes = [
   {
-    path: "/home",
+    path: "/",
     name: "Dashboard",
     icon: Dashboard,
     divise: false
@@ -28,32 +30,38 @@ const routes = [
     divise: false
   },
   {
-    path: "/saml/trusts",
-    name: "SAML Trusts",
-    icon: SamlIcon,
-    divise: false
-  },
-  {
     path: "/attributes",
     name: "Attributes",
     icon: AttributeIcon,
     divise: false
   },
   {
-    path: "/passport",
+    path: "/certificates",
+    name: "Certificates",
+    icon: CertificatesIcon,
+    divise: false
+  },
+  {
+    path: "/passport/providers",
     name: "Passport",
-    icon: AttributeIcon,
+    icon: PassportIcon,
+    divise: false
+  },
+  {
+    path: "/saml/trusts",
+    name: "SAML",
+    icon: SamlIcon,
     divise: false
   },
   {
     path: "/uma/resources",
-    name: "Uma",
+    name: "UMA",
     icon: UmaIcon,
     layout: "/admin",
     divise: false
   },
   {
-    path: "/raduis",
+    path: "/raduis/config",
     name: "Raduis",
     icon: RaduisIcon,
     divise: true

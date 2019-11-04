@@ -1,5 +1,25 @@
 .active {
-  background-color: blue;
-  background:blue;
-  color: blue;
+  background-color: #009688;
+  background: #009688;
+  color: #009688;
+}
+
+.center {
+  margin: auto;
+  width: 50%;
+  margin-top: 15%;
+  color: #009688;
+  font-size: 3em;
+  font-weight: 1000;
+  text-align: center;
+}
+
+.center2 {
+  margin: auto;
+  width: 50%;
+  margin-top: 1%;
+  color: #009688;
+  font-size: 2em;
+  font-weight: 300;
+  text-align: center;
 }

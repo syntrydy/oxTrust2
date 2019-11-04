@@ -15,6 +15,10 @@ import GroupAddPage from "./components/pages/GroupAddPage";
 import UsersPage from "./components/pages/UsersPage";
 import SamlPage from "./components/pages/TrustsPage";
 
+import AcrsPage from "./components/pages/ArcsPage";
+
+import CertificatesPage from "./components/pages/CertificatesPage";
+
 import AttributePage from "./components/pages/AttributesPage";
 
 import OpenIdClientsPage from "./components/pages/OpenIdClientsPage";
@@ -27,6 +31,14 @@ import OpenIdScopeEditPage from "./components/pages/OpenIdScopeEditPage";
 
 import UmaResourcesPage from "./components/pages/UmaResourcesPage";
 import UmaScopesPage from "./components/pages/UmaScopesPage";
+
+import PassportProvidersPage from "./components/pages/PassportProvidersPage";
+
+import RaduisClientsPage from "./components/pages/RaduisClientsPage";
+import RaduisServerConfigPage from "./components/pages/RaduisServerConfigPage";
+
+
+import NotFoundPage from "./components/pages/NotFoundPage";
 
 import { ThemeProvider } from "@material-ui/styles";
 import theme from "./theme/Theme";
@@ -65,7 +77,7 @@ export default function MyDrawer() {
           <main className={classes.content}>
             <div className={classes.toolbar} />
             <Switch>
-              <Route path="/home" exact component={HomePage} />
+              <Route path="/" exact component={HomePage} />
               <Route path="/groups" exact component={GroupsPage} />
               <Route path="/group/add" exact component={GroupAddPage} />
               <Route path="/group/edit:gid" exact component={GroupEditPage} />
@@ -120,8 +132,13 @@ export default function MyDrawer() {
                 exact
                 component={OpenIdScopeDetailPage}
               />
-
               <Route path="/attributes" exact component={AttributePage} />
+              <Route path="/saml/acrs" exact component={AcrsPage} />
+              <Route path="/certificates" exact component={CertificatesPage} />
+              <Route path="/passport/providers" exact component={PassportProvidersPage} />
+              <Route path="/raduis/clients" exact component={RaduisClientsPage} />
+              <Route path="/raduis/config" exact component={RaduisServerConfigPage} />
+              <Route exact component={NotFoundPage} />
             </Switch>
           </main>
         </div>

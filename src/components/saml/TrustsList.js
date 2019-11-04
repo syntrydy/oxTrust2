@@ -21,6 +21,11 @@ const TrustsList = props => {
       icon: "list",
       text: "ACRS",
       handle:goToAcrsPage
+    },
+    {
+      icon: "list",
+      text: "NameIds",
+      handle:goToNameIdsPage
     }
   ];
 
@@ -54,6 +59,10 @@ const TrustsList = props => {
   function goToAcrsPage() {
     const { history } = props;
     if (history) history.push('/saml/acrs');
+  }
+  function goToNameIdsPage() {
+    const { history } = props;
+    if (history) history.push('/saml/nameids');
   }
   function showDialogBox(name) {
     setRow(name);
