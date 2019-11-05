@@ -19,9 +19,6 @@ const useStyles = makeStyles({
 const OxMenu = props => {
   const { routes} = props;
   const classes = useStyles();
-  function activeRoute(routeName) {
-    return window.location.href.indexOf(routeName) > -1 ? true : false;
-  }
   
   return (
     <List>
@@ -30,7 +27,6 @@ const OxMenu = props => {
             to={prop.path}
             activeClassName="active"
             style={{ textDecoration: 'none'}}
-            onClick={activeRoute}
             key={key}>  
             <ListItem button key={prop.name} >
               <ListItemIcon>

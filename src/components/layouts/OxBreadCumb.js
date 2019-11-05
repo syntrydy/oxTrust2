@@ -33,7 +33,7 @@ const OxBreadCumb = props => {
         aria-label="breadcrumb"
         separator={<NavigateNextIcon fontSize="small" />}
       >
-        <Link color="inherit" href="/home" className={classes.link}>
+        <Link color="inherit" href="/" className={classes.link}>
           <HomeIcon className={classes.icon} color="primary" />
           Home
         </Link>
