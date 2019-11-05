@@ -32,8 +32,8 @@ const useStyles = makeStyles(theme => {
       minWidth: 0,
       flexGrow: 1,
       "&:hover": {
-        backgroundColor: palette.grey[100],
-        color: "white"
+        //backgroundColor: palette.grey[100],
+        backgroundColor: palette.primary.main
       }
     },
     itemArrow: {
@@ -124,7 +124,7 @@ const Header = ({
               <ListItemIcon>
                 <Icon color="primary">{icon}</Icon>
               </ListItemIcon>
-              {label}
+              &nbsp;&nbsp;{label}
             </NavLink>
           </MenuItem>
           {toggle && (
@@ -145,8 +145,8 @@ const Header = ({
           <NavLink to={path} style={{ textDecoration: "none" }} key={key}>
             <ListItemIcon>
               <Icon color="primary">{icon}</Icon>
+              &nbsp;&nbsp;{label}
             </ListItemIcon>
-            {label}
           </NavLink>
           {toggle && <Icon className={classes.itemArrow}>{iconLeft}</Icon>}
         </MenuItem>
@@ -179,9 +179,6 @@ const OxCollapseMenu = ({ menus, selectedKey, openKeys, hist }) => {
     }
     return setCurrentOpenKeys([...currentOpenKeys, key]);
   };
-
-  const navigateTo = path => {};
-
   const renderMenus = level => ({
     key,
     label,
@@ -205,11 +202,9 @@ const OxCollapseMenu = ({ menus, selectedKey, openKeys, hist }) => {
           onMenuClick={() => {
             if (!subMenus || separated) {
               setCurrentKey(key);
-              navigateTo(path);
             }
             if (subMenus && !currentOpenKeys.includes(key)) {
               handleToggle(key)();
-              navigateTo(path);
             }
           }}
           {...(subMenus && {
@@ -228,12 +223,17 @@ const OxCollapseMenu = ({ menus, selectedKey, openKeys, hist }) => {
           onClick={() => (subMenus ? handleToggle(key)() : setCurrentKey(key))}
           {...rest}
         >
-          <NavLink to={path} style={{ textDecoration: "none" }} key={key}>
+          <NavLink
+            to={path}
+            style={{ textDecoration: "none" }}
+            key={key}
+            classes={{ root: classes.root }}
+          >
             <ListItem button>
               <ListItemIcon>
                 <Icon color="primary">{icon}</Icon>
+                &nbsp;&nbsp;{label}
               </ListItemIcon>
-              {label}
             </ListItem>
           </NavLink>
         </MenuItem>
