@@ -5,7 +5,6 @@ import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
 import OxResponseBarChart from "../layouts/OxResponsiveBarChart";
-const colorBlue="#5DA29B";
 const data = [
   {
     date: "01-11-2019",

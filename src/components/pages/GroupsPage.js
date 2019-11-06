@@ -12,15 +12,14 @@ const breads = [
 const data = [
   {
     name: "Administrators",
-    displaymane: "Administrators",
-    origin: " Group for administrators",
     description: " Group for administrators",
+    members: 2,
     status: "active"
   },
   {
     name: "Managers",
     description: " Group for manager",
-    members: 6,
+    members: 5,
     status: "inactive"
   },
   {

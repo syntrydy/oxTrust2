@@ -4,7 +4,6 @@ import PropTypes from "prop-types";
 import MenuItem from "@material-ui/core/MenuItem";
 import Icon from "@material-ui/core/Icon";
 import ButtonBase from "@material-ui/core/ButtonBase";
-import ListItem from "@material-ui/core/ListItem";
 import Collapse from "@material-ui/core/Collapse";
 import { NavLink } from "react-router-dom";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
@@ -15,6 +14,7 @@ const useStyles = makeStyles(theme => {
   return {
     header: { display: "flex" },
     headerSelected: {
+      fontWeight: "bold",
       "& > $item": {
         fontWeight: "bold",
         color: palette.primary.main
@@ -26,14 +26,22 @@ const useStyles = makeStyles(theme => {
       }
     },
     root: {
-      color: "#19857b"
+      color: "inherit",
+      "&:hover": {
+        color: "white"
+      }
     },
     item: {
       minWidth: 0,
+      // set width
+      width: 230,
+      // item text color
+      color: "#19857b",
       flexGrow: 1,
       "&:hover": {
         //backgroundColor: palette.grey[100],
-        backgroundColor: palette.primary.main
+        backgroundColor: palette.secondary.main,
+        color: "white"
       }
     },
     itemArrow: {
@@ -47,8 +55,11 @@ const useStyles = makeStyles(theme => {
     },
     sub1: {
       paddingLeft: 40,
+      color: "#19857b",
       "&:hover": {
-        backgroundColor: palette.grey[100]
+        //backgroundColor: palette.grey[100],
+        backgroundColor: palette.secondary.main,
+        color: "white"
       }
     },
     sub1Selected: {
@@ -56,11 +67,12 @@ const useStyles = makeStyles(theme => {
       color: palette.primary.main
     },
     sub1Expanded: {
-      fontWeight: "bold"
+      //fontWeight: "bold"
     },
     sub2: {
       paddingLeft: 64,
       position: "relative",
+      color: "#19857b",
       "&:before": {
         content: '" "',
         position: "absolute",
@@ -70,20 +82,24 @@ const useStyles = makeStyles(theme => {
         backgroundColor: palette.grey[100]
       },
       "&:hover": {
-        backgroundColor: palette.grey[100]
+        //backgroundColor: palette.grey[100]
+        backgroundColor: palette.primary.main
       }
     },
     sub2Selected: {
       color: palette.primary.main,
+      fontWeight: "bold",
       "&:after": {
         content: '" "',
         position: "absolute",
         top: "50%",
         transform: "translateY(-50%)",
         width: 3,
+        fontWeight: "bold",
         height: "40%",
         left: 40,
-        backgroundColor: palette.primary.main
+        backgroundColor: palette.primary.main,
+        color: "white"
       }
     }
   };
@@ -114,19 +130,25 @@ const Header = ({
     >
       {separated ? (
         <>
-          <MenuItem
-            className={classes.item}
-            {...menuItemProps}
-            onClick={onMenuClick}
+          <NavLink
+            to={path}
+            style={{ textDecoration: "none" }}
+            key={key}
+            className="active"
           >
-            {" "}
-            <NavLink to={path} style={{ textDecoration: "none" }} key={key}>
-              <ListItemIcon>
+            <MenuItem
+              className={classes.item}
+              {...menuItemProps}
+              onClick={onMenuClick}
+              classes={{ root: classes.root }}
+            >
+              {" "}
+              <ListItemIcon classes={{ root: classes.root }}>
                 <Icon color="primary">{icon}</Icon>
               </ListItemIcon>
-              &nbsp;&nbsp;{label}
-            </NavLink>
-          </MenuItem>
+              &nbsp;&nbsp;&nbsp;&nbsp;{label}
+            </MenuItem>
+          </NavLink>
           {toggle && (
             <ButtonBase className={classes.toggle} onClick={onToggle}>
               <Icon>{iconLeft}</Icon>
@@ -134,22 +156,28 @@ const Header = ({
           )}
         </>
       ) : (
-        <MenuItem
-          className={classes.item}
-          {...menuItemProps}
-          onClick={e => {
-            onToggle(e);
-            onMenuClick(e);
-          }}
+        <NavLink
+          className="active"
+          to={path}
+          style={{ textDecoration: "none" }}
+          key={key}
         >
-          <NavLink to={path} style={{ textDecoration: "none" }} key={key}>
-            <ListItemIcon>
+          <MenuItem
+            className={classes.item}
+            {...menuItemProps}
+            onClick={e => {
+              onToggle(e);
+              onMenuClick(e);
+            }}
+            classes={{ root: classes.root }}
+          >
+            <ListItemIcon classes={{ root: classes.root }}>
               <Icon color="primary">{icon}</Icon>
-              &nbsp;&nbsp;{label}
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{label}
             </ListItemIcon>
-          </NavLink>
-          {toggle && <Icon className={classes.itemArrow}>{iconLeft}</Icon>}
-        </MenuItem>
+            {toggle && <Icon className={classes.itemArrow}>{iconLeft}</Icon>}
+          </MenuItem>
+        </NavLink>
       )}
     </div>
   );
@@ -164,7 +192,7 @@ const OxCollapseMenu = ({ menus, selectedKey, openKeys, hist }) => {
   const classes = useStyles();
   const [currentKey, setCurrentKey] = useState(selectedKey || "");
   const [currentOpenKeys, setCurrentOpenKeys] = useState(openKeys || []);
-  console.log("currentOpenKeys", currentOpenKeys);
+  //console.log("currentOpenKeys", currentOpenKeys);
   useEffect(() => {
     setCurrentKey(selectedKey);
   }, [selectedKey]);
@@ -214,29 +242,26 @@ const OxCollapseMenu = ({ menus, selectedKey, openKeys, hist }) => {
           {...rest}
         />
       ) : (
-        <MenuItem
-          className={cx(
-            classes[`sub${level}`],
-            currentKey === key && classes[`sub${level}Selected`],
-            currentOpenKeys.includes(key) && classes[`sub${level}Expanded`]
-          )}
-          onClick={() => (subMenus ? handleToggle(key)() : setCurrentKey(key))}
-          {...rest}
-        >
-          <NavLink
-            to={path}
-            style={{ textDecoration: "none" }}
-            key={key}
+        <NavLink to={path} style={{ textDecoration: "none" }} key={key}>
+          <MenuItem
+            className={cx(
+              classes[`sub${level}`],
+              currentKey === key && classes[`sub${level}Selected`],
+              currentOpenKeys.includes(key) && classes[`sub${level}Expanded`]
+            )}
+            onClick={() =>
+              subMenus ? handleToggle(key)() : setCurrentKey(key)
+            }
+            {...rest}
             classes={{ root: classes.root }}
           >
-            <ListItem button>
-              <ListItemIcon>
-                <Icon color="primary">{icon}</Icon>
-                &nbsp;&nbsp;{label}
-              </ListItemIcon>
-            </ListItem>
-          </NavLink>
-        </MenuItem>
+            <ListItemIcon classes={{ root: classes.root }}>
+              <Icon color="primary">{icon}</Icon>
+              &nbsp;&nbsp;&nbsp;&nbsp;{label}
+              {" Gasm"}
+            </ListItemIcon>
+          </MenuItem>
+        </NavLink>
       )}
       {subMenus && (
         <Collapse in={currentOpenKeys.includes(key)}>
