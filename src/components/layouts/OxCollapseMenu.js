@@ -258,7 +258,6 @@ const OxCollapseMenu = ({ menus, selectedKey, openKeys, hist }) => {
             <ListItemIcon classes={{ root: classes.root }}>
               <Icon color="primary">{icon}</Icon>
               &nbsp;&nbsp;&nbsp;&nbsp;{label}
-              {" Gasm"}
             </ListItemIcon>
           </MenuItem>
         </NavLink>
