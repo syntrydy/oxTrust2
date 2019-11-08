@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "272a7203438bcb9d961129269e5e8789",
+    "revision": "dde341f6b54fd1ba0432cb9478b2e816",
     "url": "/oxTrust2/index.html"
   },
   {
@@ -8,8 +8,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/oxTrust2/static/js/2.6004ba6f.chunk.js"
   },
   {
-    "revision": "9a68b0e12cc5cdba4b56",
-    "url": "/oxTrust2/static/js/main.8f01a78a.chunk.js"
+    "revision": "8a3e9727281f63bf0f48",
+    "url": "/oxTrust2/static/js/main.8f236e3a.chunk.js"
   },
   {
     "revision": "3a371c3bba3e8d6e9f59",
