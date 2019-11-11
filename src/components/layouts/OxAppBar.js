@@ -68,7 +68,7 @@ const OxAppBar = props => {
       onClose={handleMobileMenuClose}
     >
       <MenuItem>
-        <IconButton aria-label="show 4 new mails" color="inherit">
+        <IconButton aria-label="show 4 new mails" color="secondary">
           <Badge badgeContent={4} color="secondary">
             <MailIcon />
           </Badge>
@@ -76,7 +76,7 @@ const OxAppBar = props => {
         <p>Messages</p>
       </MenuItem>
       <MenuItem>
-        <IconButton aria-label="show 11 new notifications" color="inherit">
+        <IconButton aria-label="show 11 new notifications" color="secondary">
           <Badge badgeContent={11} color="secondary">
             <NotificationsIcon />
           </Badge>
@@ -88,7 +88,7 @@ const OxAppBar = props => {
           aria-label="account of current user"
           aria-controls="primary-search-account-menu"
           aria-haspopup="true"
-          color="inherit"
+          color="primary"
         >
           <AccountCircle />
         </IconButton>
@@ -108,7 +108,7 @@ const OxAppBar = props => {
     >
       <Toolbar>
         <IconButton
-          color="inherit"
+          color="secondary"
           aria-label="open drawer"
           onClick={handleDrawerOpen}
           edge="start"
@@ -136,12 +136,12 @@ const OxAppBar = props => {
         </div>
         <div className={classes.grow} />
         <div className={classes.sectionDesktop}>
-          <IconButton aria-label="show 4 new mails" color="inherit">
+          <IconButton aria-label="show 4 new mails" color="secondary">
             <Badge badgeContent={4} color="secondary">
               <MailIcon />
             </Badge>
           </IconButton>
-          <IconButton aria-label="show 17 new notifications" color="inherit">
+          <IconButton aria-label="show 17 new notifications" color="secondary">
             <Badge badgeContent={17} color="secondary">
               <NotificationsIcon />
             </Badge>
@@ -152,7 +152,7 @@ const OxAppBar = props => {
             aria-controls={menuId}
             aria-haspopup="true"
             onClick={handleProfileMenuOpen}
-            color="inherit"
+            color="secondary"
           >
             <AccountCircle />
           </IconButton>
@@ -163,7 +163,7 @@ const OxAppBar = props => {
             aria-controls={mobileMenuId}
             aria-haspopup="true"
             onClick={handleMobileMenuOpen}
-            color="inherit"
+            color="secondary"
           >
             <MoreIcon />
           </IconButton>

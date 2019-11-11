@@ -72,7 +72,7 @@ const AttributeList = props => {
             render: rowData => (
               <Chip
                 classes={{ colorSecondary: classes.colorSecondary }}
-                color={rowData.status === "active" ? "primary" : "default"}
+                color={rowData.status === "active" ? "secondary" : "default"}
                 label={rowData.status}
               />
             )
@@ -82,7 +82,7 @@ const AttributeList = props => {
           actionsColumnIndex: -1,
           selection: false,
           headerStyle: {
-            backgroundColor: "#19857b",
+            backgroundColor: "green",
             color: "#FFF",
             fontSize: "1.2em"
           },
@@ -98,7 +98,7 @@ const AttributeList = props => {
           {
             icon: "visibility",
             tooltip: "Show attribute detail",
-            iconProps: { color: "primary" },
+            iconProps: { color: "secondary" },
             onClick: (event, rowData) => {
               goToAttributeDetailPage(rowData.tableData.id);
             }
@@ -106,7 +106,7 @@ const AttributeList = props => {
           {
             icon: "edit",
             tooltip: "Edit attribute",
-            iconProps: { color: "primary" },
+            iconProps: { color: "secondary" },
             onClick: (event, rowData) => {
               goToAttributeEditPage(rowData.tableData.id);
             }

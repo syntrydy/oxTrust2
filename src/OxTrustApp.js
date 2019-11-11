@@ -13,7 +13,7 @@ import GroupEditPage from "./components/pages/GroupEditPage";
 import GroupAddPage from "./components/pages/GroupAddPage";
 
 import UsersPage from "./components/pages/UsersPage";
-import SamlPage from "./components/pages/TrustsPage";
+import TrustsPage from "./components/pages/TrustsPage";
 
 import AcrsPage from "./components/pages/ArcsPage";
 
@@ -89,7 +89,9 @@ export default function MyDrawer() {
 
               <Route path="/users" exact component={UsersPage} />
 
-              <Route path="/saml/trusts" exact component={SamlPage} />
+              <Route path="/saml/trusts" exact component={TrustsPage} />
+
+              <Route path="/saml/acrs" exact component={AcrsPage} />
 
               <Route path="/uma/resources" exact component={UmaResourcesPage} />
 
@@ -133,7 +135,6 @@ export default function MyDrawer() {
                 component={OpenIdScopeDetailPage}
               />
               <Route path="/attributes" exact component={AttributePage} />
-              <Route path="/saml/acrs" exact component={AcrsPage} />
               <Route path="/certificates" exact component={CertificatesPage} />
               <Route path="/passport/providers" exact component={PassportProvidersPage} />
               <Route path="/raduis/clients" exact component={RaduisClientsPage} />

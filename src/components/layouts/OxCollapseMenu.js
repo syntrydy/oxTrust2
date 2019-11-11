@@ -36,10 +36,9 @@ const useStyles = makeStyles(theme => {
       // set width
       width: 230,
       // item text color
-      color: "#19857b",
+      color: palette.primary.main,
       flexGrow: 1,
       "&:hover": {
-        //backgroundColor: palette.grey[100],
         backgroundColor: palette.secondary.main,
         color: "white"
       }
@@ -57,7 +56,6 @@ const useStyles = makeStyles(theme => {
       paddingLeft: 40,
       color: "#19857b",
       "&:hover": {
-        //backgroundColor: palette.grey[100],
         backgroundColor: palette.secondary.main,
         color: "white"
       }
@@ -72,7 +70,7 @@ const useStyles = makeStyles(theme => {
     sub2: {
       paddingLeft: 64,
       position: "relative",
-      color: "#19857b",
+      color: palette.primary.main,
       "&:before": {
         content: '" "',
         position: "absolute",
