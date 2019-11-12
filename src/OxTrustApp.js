@@ -13,6 +13,7 @@ import GroupEditPage from "./components/pages/GroupEditPage";
 import GroupAddPage from "./components/pages/GroupAddPage";
 
 import UsersPage from "./components/pages/UsersPage";
+import UserAddPage from "./components/pages/UserAddPage";
 import TrustsPage from "./components/pages/TrustsPage";
 
 import AcrsPage from "./components/pages/ArcsPage";
@@ -35,8 +36,10 @@ import UmaScopesPage from "./components/pages/UmaScopesPage";
 import PassportProvidersPage from "./components/pages/PassportProvidersPage";
 
 import RaduisClientsPage from "./components/pages/RaduisClientsPage";
-import RaduisServerConfigPage from "./components/pages/RaduisServerConfigPage";
 
+import ClientAddPage from "./components/pages/ClientAddPage";
+
+import RaduisServerConfigPage from "./components/pages/RaduisServerConfigPage";
 
 import NotFoundPage from "./components/pages/NotFoundPage";
 
@@ -88,6 +91,7 @@ export default function MyDrawer() {
               />
 
               <Route path="/users" exact component={UsersPage} />
+              <Route path="/user/add" exact component={UserAddPage} />
 
               <Route path="/saml/trusts" exact component={TrustsPage} />
 
@@ -102,11 +106,7 @@ export default function MyDrawer() {
                 exact
                 component={OpenIdClientsPage}
               />
-              <Route
-                path="/openid/client/add"
-                exact
-                component={OpenIdClientsPage}
-              />
+              
               <Route
                 path="/openid/client/edit:gid"
                 exact
@@ -116,6 +116,12 @@ export default function MyDrawer() {
                 path="/openid/client/detail:gid"
                 exact
                 component={OpenIdClientDetailPage}
+              />
+
+              <Route
+                path="/openid/client/add"
+                exact
+                component={ClientAddPage}
               />
 
               <Route path="/openid/scopes" exact component={OpenIdScopesPage} />
@@ -136,9 +142,21 @@ export default function MyDrawer() {
               />
               <Route path="/attributes" exact component={AttributePage} />
               <Route path="/certificates" exact component={CertificatesPage} />
-              <Route path="/passport/providers" exact component={PassportProvidersPage} />
-              <Route path="/raduis/clients" exact component={RaduisClientsPage} />
-              <Route path="/raduis/config" exact component={RaduisServerConfigPage} />
+              <Route
+                path="/passport/providers"
+                exact
+                component={PassportProvidersPage}
+              />
+              <Route
+                path="/raduis/clients"
+                exact
+                component={RaduisClientsPage}
+              />
+              <Route
+                path="/raduis/config"
+                exact
+                component={RaduisServerConfigPage}
+              />
               <Route exact component={NotFoundPage} />
             </Switch>
           </main>

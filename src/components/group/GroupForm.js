@@ -2,10 +2,10 @@ import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import Button from "@material-ui/core/Button";
+import SaveIcon from '@material-ui/icons/Save';
 import TextField from "@material-ui/core/TextField";
 import useForm from "react-hook-form";
 import Grid from "@material-ui/core/Grid";
-
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
@@ -29,7 +29,7 @@ const GroupForm = () => {
             <TextField
               id="groupName"
               name="groupName"
-              style={{ width: "90%" }}
+              style={{ width: "100%" }}
               className={classes.textField}
               label="Group name"
               inputRef={register({ required: true, maxlength: 20 })}
@@ -41,7 +41,7 @@ const GroupForm = () => {
           <Grid item xs={12}>
             <TextField
               id="description"
-              style={{ width: "90%" }}
+              style={{ width: "100%" }}
               name="description"
               multiline
               className={classes.textField}
@@ -57,6 +57,7 @@ const GroupForm = () => {
               type="submit"
               variant="contained"
               color="primary"
+              startIcon={<SaveIcon />}
             >
               Save
             </Button>

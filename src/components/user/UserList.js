@@ -9,7 +9,8 @@ const UserList = props => {
   const items = [
     {
       icon: "add",
-      text: "user"
+      text: "user",
+      handle: goToUserAddPage
     },
     {
       icon: "list",
@@ -48,6 +49,11 @@ const UserList = props => {
   function goToImportPage() {
     const { history } = props;
     if (history) history.push("/user/import");
+  }
+
+  function goToUserAddPage() {
+    const { history } = props;
+    if (history) history.push("/user/add");
   }
   function showDialogBox(name) {
     setRow(name);

@@ -14,7 +14,8 @@ const GroupList = props => {
     },
     {
       icon: "add",
-      text: "user"
+      text: "user",
+      handle: goToUserAddPage
     },
     {
       icon: "list",
@@ -46,6 +47,10 @@ const GroupList = props => {
   function goToGroupAddPage() {
     const { history } = props;
     if (history) history.push("/group/add");
+  }
+  function goToUserAddPage() {
+    const { history } = props;
+    if (history) history.push("/user/add");
   }
   function showDialogBox(name) {
     setRow(name);
