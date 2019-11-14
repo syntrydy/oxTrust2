@@ -82,7 +82,7 @@ const AttributeList = props => {
           actionsColumnIndex: -1,
           selection: false,
           headerStyle: {
-            backgroundColor: "green",
+            backgroundColor: "#000",
             color: "#FFF",
             fontSize: "1.2em"
           },

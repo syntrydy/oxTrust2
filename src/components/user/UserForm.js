@@ -4,7 +4,9 @@ import Paper from "@material-ui/core/Paper";
 import Button from "@material-ui/core/Button";
 import SaveIcon from "@material-ui/icons/Save";
 import TextField from "@material-ui/core/TextField";
+import FormControl from "@material-ui/core/FormControl";
 import useForm from "react-hook-form";
+import Select from "@material-ui/core/Select";
 import Grid from "@material-ui/core/Grid";
 
 const useStyles = makeStyles(theme => ({
@@ -14,26 +16,34 @@ const useStyles = makeStyles(theme => ({
   },
   paper: {
     marginLeft: "10px;"
+  },
+  inputwidth: {
+    width: "99%",
+    marginTop: "2px",
+    marginBottom: "2px"
   }
 }));
 
 const UserForm = () => {
   const classes = useStyles();
   const { handleSubmit, register, errors } = useForm();
+  const [age, setAge] = React.useState("");
   const onSubmit = values => {
     console.log(values);
   };
+  const handleChange = event => {
+    setAge(event.target.value);
+  };
 
   return (
-    <Paper className={classes.root} elevation={4}>
+    <Paper elevation={4}>
       <form onSubmit={handleSubmit(onSubmit)} style={{ padding: "25px" }}>
         <Grid container spacing={0}>
-          <Grid item xs={12}>
+          <Grid item xs={6}>
             <TextField
               id="username"
               name="username"
-              style={{ width: "100%" }}
-              className={classes.textField}
+              className={classes.inputwidth}
               label="User name"
               inputRef={register({ required: true, maxlength: 20 })}
               margin="normal"
@@ -41,72 +51,76 @@ const UserForm = () => {
             />
             {errors.groupName && "username is required"}
           </Grid>
-          <Grid item xs={12}>
+          <Grid item xs={6}>
             <TextField
               id="firstName"
-              style={{ width: "100%" }}
               name="firstName"
-              className={classes.textField}
+              className={classes.inputwidth}
               label="First Name"
               margin="normal"
               inputRef={register({ required: true })}
               variant="outlined"
             />
           </Grid>
-          <Grid item xs={12}>
+          <Grid item xs={6}>
             <TextField
               id="lastName"
-              style={{ width: "100%" }}
               name="lastName"
-              className={classes.textField}
+              className={classes.inputwidth}
               label="Last Name"
               margin="normal"
               inputRef={register({ required: true })}
               variant="outlined"
             />
           </Grid>
-          <Grid item xs={12}>
+          <Grid item xs={6}>
             <TextField
               id="displayName"
-              style={{ width: "100%" }}
               name="displayName"
-              className={classes.textField}
+              className={classes.inputwidth}
               label="Display Name"
               margin="normal"
               inputRef={register({ required: true })}
               variant="outlined"
             />
           </Grid>
-          <Grid item xs={12}>
+          <Grid item xs={6}>
             <TextField
               id="email"
-              style={{ width: "100%" }}
               name="Email"
-              className={classes.textField}
+              className={classes.inputwidth}
+              type="email"
               label="Email"
               margin="normal"
               inputRef={register({ required: true })}
               variant="outlined"
             />
           </Grid>
-          <Grid item xs={12}>
+          <Grid item xs={6}>
+            <FormControl className={classes.inputwidth}>
+              <Select
+                id="statusSelect"
+                onChange={handleChange}
+                value={age}
+              ></Select>
+            </FormControl>
+          </Grid>
+          <Grid item xs={6}>
             <TextField
               id="password"
-              style={{ width: "100%" }}
               name="password"
-              className={classes.textField}
+              className={classes.inputwidth}
               label="Password"
               margin="normal"
               inputRef={register({ required: true })}
               variant="outlined"
             />
           </Grid>
-          <Grid item xs={12}>
+          <Grid item xs={6}>
             <TextField
               id="confirmpassword"
-              style={{ width: "100%" }}
               name="confirmpassword"
-              className={classes.textField}
+              className={classes.inputwidth}
               label="Confirm Password"
               margin="normal"
               inputRef={register({ required: true })}
@@ -115,7 +129,6 @@ const UserForm = () => {
           </Grid>
           <Grid item xs={12}>
             <Button
-              size="small"
               type="submit"
               variant="contained"
               color="primary"

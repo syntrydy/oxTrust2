@@ -43,7 +43,7 @@ const ClientForm = () => {
       case 1:
         return <ClientFormAdvanced register={register} errors={errors}/>;
       case 2:
-        return "This is the bit I really care about!";
+        return <ClientFormAdvanced register={register} errors={errors}/>;
       default:
         return "Unknown step";
     }
