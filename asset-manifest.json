@@ -1,19 +1,19 @@
 {
   "files": {
-    "main.js": "/oxTrust2/static/js/main.a16c020f.chunk.js",
-    "main.js.map": "/oxTrust2/static/js/main.a16c020f.chunk.js.map",
+    "main.js": "/oxTrust2/static/js/main.9e52e919.chunk.js",
+    "main.js.map": "/oxTrust2/static/js/main.9e52e919.chunk.js.map",
     "runtime-main.js": "/oxTrust2/static/js/runtime-main.421eea49.js",
     "runtime-main.js.map": "/oxTrust2/static/js/runtime-main.421eea49.js.map",
-    "static/js/2.e8fd2c44.chunk.js": "/oxTrust2/static/js/2.e8fd2c44.chunk.js",
-    "static/js/2.e8fd2c44.chunk.js.map": "/oxTrust2/static/js/2.e8fd2c44.chunk.js.map",
+    "static/js/2.03070e09.chunk.js": "/oxTrust2/static/js/2.03070e09.chunk.js",
+    "static/js/2.03070e09.chunk.js.map": "/oxTrust2/static/js/2.03070e09.chunk.js.map",
     "index.html": "/oxTrust2/index.html",
-    "precache-manifest.1ff6a27d357271d6cd5e77fc84c13669.js": "/oxTrust2/precache-manifest.1ff6a27d357271d6cd5e77fc84c13669.js",
+    "precache-manifest.e659e3c5d19b72b344a545eb86f13c90.js": "/oxTrust2/precache-manifest.e659e3c5d19b72b344a545eb86f13c90.js",
     "service-worker.js": "/oxTrust2/service-worker.js",
     "static/media/logo.png": "/oxTrust2/static/media/logo.82ed0180.png"
   },
   "entrypoints": [
     "static/js/runtime-main.421eea49.js",
-    "static/js/2.e8fd2c44.chunk.js",
-    "static/js/main.a16c020f.chunk.js"
+    "static/js/2.03070e09.chunk.js",
+    "static/js/main.9e52e919.chunk.js"
   ]
 }
