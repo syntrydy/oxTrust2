@@ -6,6 +6,7 @@ import SaveIcon from "@material-ui/icons/Save";
 import TextField from "@material-ui/core/TextField";
 import Checkbox from "@material-ui/core/Checkbox";
 import Typography from "@material-ui/core/Typography";
+import InputLabel from "@material-ui/core/InputLabel";
 import Slider from "@material-ui/core/Slider";
 import FormControl from "@material-ui/core/FormControl";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
@@ -66,6 +67,10 @@ const AttributeForm = () => {
   const { handleSubmit, register, errors } = useForm();
   const [status, setStatus] = React.useState("");
   const [multivalued, setMultiValued] = React.useState("");
+  const [scimExtended, setScimExtended] = React.useState("");
+  const [type, setType] = React.useState("");
+  const [edittype, setEditType] = React.useState([]);
+  const [viewtype, setViewType] = React.useState([]);
   const [state, setState] = React.useState({
     checkedA: true,
     checkedB: true,
@@ -84,9 +89,21 @@ const AttributeForm = () => {
   const handleMultivaluedChange = event => {
     setMultiValued(event.target.value);
   };
+  const handleScimExtendedChange = event => {
+    setScimExtended(event.target.value);
+  };
+  const handleTypeChange = event => {
+    setType(event.target.value);
+  };
+  const handleEditTypeChange = event => {
+    setEditType(event.target.value);
+  };
+  const handleViewTypeChange = event => {
+    setViewType(event.target.value);
+  };
 
   return (
-    <Paper elevation={4}>
+    <Paper elevation={4} style={{ paddingLeft: "10%", paddingRight: "10%" }}>
       <form onSubmit={handleSubmit(onSubmit)} style={{ padding: "25px" }}>
         <Grid container spacing={0}>
           <Grid item xs={12}>
@@ -124,37 +141,58 @@ const AttributeForm = () => {
             />
           </Grid>
           <Grid item xs={12}>
-            <TextField
-              id="type"
-              name="type"
-              className={classes.inputwidth}
-              label="Type"
-              margin="normal"
-              inputRef={register({ required: false })}
-              variant="outlined"
-            />
+            <FormControl className={classes.margin} style={{ width: "200px" }}>
+              <InputLabel htmlFor="type">Type</InputLabel>
+              <NativeSelect
+                id="type"
+                value={type}
+                name="type"
+                inputRef={register({ required: true })}
+                onChange={handleTypeChange}
+                input={<BootstrapInput />}
+              >
+                <option value="Text">Text</option>
+                <option value="Numeric">Numeric</option>
+                <option value="Boolean">Boolean</option>
+                <option value="Binary">Binary</option>
+                <option value="Certificate">Certificate</option>
+                <option value="Date">Date</option>
+              </NativeSelect>
+            </FormControl>
           </Grid>
           <Grid item xs={12}>
-            <TextField
-              id="editType"
-              name="editType"
-              className={classes.inputwidth}
-              label="Edit Type"
-              margin="normal"
-              inputRef={register({ required: false })}
-              variant="outlined"
-            />
+            <FormControl className={classes.margin} style={{ width: "200px" }}>
+              <InputLabel htmlFor="edittype">Edit Type</InputLabel>
+              <NativeSelect
+                id="edittype"
+                value={edittype}
+                name="edittype"
+                multiple={true}
+                inputRef={register({ required: true })}
+                onChange={handleEditTypeChange}
+                input={<BootstrapInput />}
+              >
+                <option value="admin">admin</option>
+                <option value="edit">edit</option>
+              </NativeSelect>
+            </FormControl>
           </Grid>
           <Grid item xs={12}>
-            <TextField
-              id="viewType"
-              name="viewType"
-              className={classes.inputwidth}
-              label="View Type"
-              margin="normal"
-              inputRef={register({ required: false })}
-              variant="outlined"
-            />
+          <FormControl className={classes.margin} style={{ width: "200px" }}>
+              <InputLabel htmlFor="viewtype">View Type</InputLabel>
+              <NativeSelect
+                id="viewtype"
+                value={viewtype}
+                multiple={true}
+                name="ediviewtypettype"
+                inputRef={register({ required: true })}
+                onChange={handleViewTypeChange}
+                input={<BootstrapInput />}
+              >
+                <option value="admin">admin</option>
+                <option value="edit">edit</option>
+              </NativeSelect>
+            </FormControl>
           </Grid>
           <Grid item xs={12}>
             <TextField
@@ -169,27 +207,13 @@ const AttributeForm = () => {
           </Grid>
           <Grid item xs={12}>
             <TextField
-              id="multivalued"
-              name="multivalued"
+              id="pattern"
+              name="pattern"
               className={classes.inputwidth}
-              label="Multivalued"
+              label="Regex Pattern"
               margin="normal"
-              inputRef={register({ required: false })}
               variant="outlined"
             />
-            <FormControl className={classes.margin}>
-              <NativeSelect
-                id="multivalued"
-                value={multivalued}
-                name="multivalued"
-                inputRef={register({ required: true })}
-                onChange={handleMultivaluedChange}
-                input={<BootstrapInput />}
-              >
-                <option value="true">True</option>
-                <option value="false">False</option>
-              </NativeSelect>
-            </FormControl>
           </Grid>
           <Grid item xs={12}>
             <TextField
@@ -202,18 +226,41 @@ const AttributeForm = () => {
               variant="outlined"
             />
           </Grid>
-          <Grid item xs={6}>
-            <TextField
-              id="scimattribute"
-              name="scimattribute"
-              className={classes.inputwidth}
-              label="Scim Attribute"
-              margin="normal"
-              inputRef={register({ required: false })}
-              variant="outlined"
-            />
+          <Grid item xs={12}>
+            <FormControl className={classes.margin} style={{ width: "200px" }}>
+              <InputLabel htmlFor="multivalued">Multivalued</InputLabel>
+              <NativeSelect
+                id="multivalued"
+                value={multivalued}
+                name="multivalued"
+                inputRef={register({ required: true })}
+                onChange={handleMultivaluedChange}
+                input={<BootstrapInput />}
+              >
+                <option value="false">False</option>
+                <option value="true">True</option>
+              </NativeSelect>
+            </FormControl>
           </Grid>
-          <Grid item xs={6}>
+          <Grid item xs={12}>
+            <FormControl className={classes.margin} style={{ width: "200px" }}>
+              <InputLabel htmlFor="scimextended">
+                SCIM extended attribute
+              </InputLabel>
+              <NativeSelect
+                id="scimextended"
+                value={scimExtended}
+                name="scimextended"
+                inputRef={register({ required: true })}
+                onChange={handleScimExtendedChange}
+                input={<BootstrapInput />}
+              >
+                <option value="false">False</option>
+                <option value="true">True</option>
+              </NativeSelect>
+            </FormControl>
+          </Grid>
+          <Grid item xs={12}>
             <FormControlLabel
               control={
                 <Checkbox
@@ -225,7 +272,7 @@ const AttributeForm = () => {
               label="Enable custom validation for this attribute "
             />
           </Grid>
-          <Grid item xs={6}>
+          <Grid item xs={12}>
             <FormControlLabel
               control={
                 <Checkbox
@@ -237,7 +284,7 @@ const AttributeForm = () => {
               label="Enable tooltip for this attribute "
             />
           </Grid>
-          <Grid item xs={6}>
+          <Grid item xs={12}>
             <Typography id="discrete-slider" gutterBottom>
               Minimum Length
             </Typography>
@@ -252,7 +299,7 @@ const AttributeForm = () => {
               max={10}
             />
           </Grid>
-          <Grid item xs={6}>
+          <Grid item xs={12}>
             <Typography id="discrete-slider" gutterBottom>
               Maximum Length
             </Typography>
@@ -267,18 +314,9 @@ const AttributeForm = () => {
               max={100}
             />
           </Grid>
-          <Grid item xs={6}>
-            <TextField
-              id="pattern"
-              name="pattern"
-              className={classes.inputwidth}
-              label="Regex Pattern"
-              margin="normal"
-              variant="outlined"
-            />
-          </Grid>
-          <Grid item xs={6}>
-            <FormControl className={classes.margin}>
+          <Grid item xs={12}>
+            <FormControl className={classes.margin} style={{ width: "200px" }}>
+              <InputLabel htmlFor="status">Status</InputLabel>
               <NativeSelect
                 id="statusSelectBox"
                 value={status}
@@ -296,6 +334,7 @@ const AttributeForm = () => {
             <Button
               type="submit"
               variant="contained"
+              style={{ marginTop: "5%" }}
               color="primary"
               startIcon={<SaveIcon />}
             >
