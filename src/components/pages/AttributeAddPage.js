@@ -18,7 +18,7 @@ const AttributeAddPage = () => {
     <div>
       <OxBreadCumb breads={breads} />
       <div style={{ height: "5px" }}></div>
-      <AttributeFrom></AttributeFrom>
+      <AttributeFrom/>
     </div>
   );
 };

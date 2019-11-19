@@ -11,6 +11,9 @@ import Slider from "@material-ui/core/Slider";
 import FormControl from "@material-ui/core/FormControl";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import NativeSelect from "@material-ui/core/NativeSelect";
+import Select from "@material-ui/core/Select";
+import ListItemText from "@material-ui/core/ListItemText";
+import MenuItem from "@material-ui/core/MenuItem";
 import InputBase from "@material-ui/core/InputBase";
 import useForm from "react-hook-form";
 import Grid from "@material-ui/core/Grid";
@@ -27,6 +30,7 @@ const useStyles = makeStyles(theme => ({
     width: "99%"
   }
 }));
+const viewTypes = ["Admin", "User"];
 const BootstrapInput = withStyles(theme => ({
   root: {
     "label + &": {
@@ -69,8 +73,9 @@ const AttributeForm = () => {
   const [multivalued, setMultiValued] = React.useState("");
   const [scimExtended, setScimExtended] = React.useState("");
   const [type, setType] = React.useState("");
-  const [edittype, setEditType] = React.useState([]);
-  const [viewtype, setViewType] = React.useState([]);
+  const [edittype, setEditType] = React.useState(["Admin"]);
+  const [viewtype, setViewType] = React.useState(["Admin"]);
+  const [usagetype, setUsageType] = React.useState(["None"]);
   const [state, setState] = React.useState({
     checkedA: true,
     checkedB: true,
@@ -78,6 +83,9 @@ const AttributeForm = () => {
     checkedG: true
   });
   const onSubmit = values => {
+    values.edityType = edittype;
+    values.viewType = viewtype;
+    values.usageType = usagetype;
     console.log(values);
   };
   const handleChange = name => event => {
@@ -95,11 +103,14 @@ const AttributeForm = () => {
   const handleTypeChange = event => {
     setType(event.target.value);
   };
-  const handleEditTypeChange = event => {
+  const handleChangeEditTypeMultiple = event => {
     setEditType(event.target.value);
   };
-  const handleViewTypeChange = event => {
+  const handleChangeViewTypeMultiple = event => {
     setViewType(event.target.value);
+  };
+  const handleChangeUsageTypeMultiple = event => {
+    setUsageType(event.target.value);
   };
 
   return (
@@ -140,8 +151,8 @@ const AttributeForm = () => {
               variant="outlined"
             />
           </Grid>
-          <Grid item xs={12}>
-            <FormControl className={classes.margin} style={{ width: "200px" }}>
+          <Grid item xs={6}>
+            <FormControl className={classes.margin}>
               <InputLabel htmlFor="type">Type</InputLabel>
               <NativeSelect
                 id="type"
@@ -160,50 +171,66 @@ const AttributeForm = () => {
               </NativeSelect>
             </FormControl>
           </Grid>
-          <Grid item xs={12}>
-            <FormControl className={classes.margin} style={{ width: "200px" }}>
-              <InputLabel htmlFor="edittype">Edit Type</InputLabel>
-              <NativeSelect
-                id="edittype"
+          <Grid item xs={6}>
+            <FormControl>
+              <InputLabel>Edit Type</InputLabel>
+              <Select
+                multiple
                 value={edittype}
-                name="edittype"
-                multiple={true}
-                inputRef={register({ required: true })}
-                onChange={handleEditTypeChange}
+                onChange={handleChangeEditTypeMultiple}
                 input={<BootstrapInput />}
+                renderValue={selected => selected.join(", ")}
               >
-                <option value="admin">admin</option>
-                <option value="edit">edit</option>
-              </NativeSelect>
+                {viewTypes.map(name => (
+                  <MenuItem key={name} value={name}>
+                    <Checkbox checked={edittype.indexOf(name) > -1} />
+                    <ListItemText primary={name} />
+                  </MenuItem>
+                ))}
+              </Select>
             </FormControl>
           </Grid>
-          <Grid item xs={12}>
-          <FormControl className={classes.margin} style={{ width: "200px" }}>
-              <InputLabel htmlFor="viewtype">View Type</InputLabel>
-              <NativeSelect
-                id="viewtype"
+          <Grid item xs={6}>
+            <FormControl className={classes.formControl}>
+              <InputLabel id="viewType">View Type</InputLabel>
+              <Select
+                labelId="viewType"
+                id="viewType-checkbox"
+                multiple
                 value={viewtype}
-                multiple={true}
-                name="ediviewtypettype"
-                inputRef={register({ required: true })}
-                onChange={handleViewTypeChange}
+                onChange={handleChangeViewTypeMultiple}
                 input={<BootstrapInput />}
+                renderValue={selected => selected.join(", ")}
               >
-                <option value="admin">admin</option>
-                <option value="edit">edit</option>
-              </NativeSelect>
+                {viewTypes.map(name => (
+                  <MenuItem key={name} value={name}>
+                    <Checkbox checked={viewtype.indexOf(name) > -1} />
+                    <ListItemText primary={name} />
+                  </MenuItem>
+                ))}
+              </Select>
             </FormControl>
           </Grid>
-          <Grid item xs={12}>
-            <TextField
-              id="usageType"
-              name="usageType"
-              className={classes.inputwidth}
-              label="Usage Type"
-              margin="normal"
-              inputRef={register({ required: false })}
-              variant="outlined"
-            />
+          <Grid item xs={6}>
+            <FormControl className={classes.formControl}>
+              <InputLabel id="usageType">Usage Type</InputLabel>
+              <Select
+                labelId="usageType"
+                id="usageType-checkbox"
+                multiple
+                value={usagetype}
+                onChange={handleChangeUsageTypeMultiple}
+                input={<BootstrapInput />}
+                renderValue={selected => selected.join(", ")}
+              >
+                {["OpenID", "None"].map(name => (
+                  <MenuItem key={name} value={name}>
+                    <Checkbox checked={usagetype.indexOf(name) > -1} />
+                    <ListItemText primary={name} />
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
           </Grid>
           <Grid item xs={12}>
             <TextField
@@ -226,7 +253,7 @@ const AttributeForm = () => {
               variant="outlined"
             />
           </Grid>
-          <Grid item xs={12}>
+          <Grid item xs={4}>
             <FormControl className={classes.margin} style={{ width: "200px" }}>
               <InputLabel htmlFor="multivalued">Multivalued</InputLabel>
               <NativeSelect
@@ -242,7 +269,23 @@ const AttributeForm = () => {
               </NativeSelect>
             </FormControl>
           </Grid>
-          <Grid item xs={12}>
+          <Grid item xs={4}>
+            <FormControl className={classes.margin} style={{ width: "200px" }}>
+              <InputLabel htmlFor="status">Status</InputLabel>
+              <NativeSelect
+                id="statusSelectBox"
+                value={status}
+                name="status"
+                inputRef={register({ required: true })}
+                onChange={handleStatusChange}
+                input={<BootstrapInput />}
+              >
+                <option value="Active">Active</option>
+                <option value="Inactive">Inactive</option>
+              </NativeSelect>
+            </FormControl>
+          </Grid>
+          <Grid item xs={4}>
             <FormControl className={classes.margin} style={{ width: "200px" }}>
               <InputLabel htmlFor="scimextended">
                 SCIM extended attribute
@@ -294,6 +337,8 @@ const AttributeForm = () => {
               valueLabelDisplay="auto"
               style={{ width: "90%" }}
               step={1}
+              name="minimunlength"
+              inputRef={register({ required: true })}
               marks
               min={0}
               max={10}
@@ -307,28 +352,14 @@ const AttributeForm = () => {
               defaultValue={0}
               aria-labelledby="discrete-slider"
               valueLabelDisplay="auto"
+              name="maximumlength"
+              inputRef={register({ required: true })}
               step={1}
               style={{ width: "90%" }}
               marks
               min={0}
               max={100}
             />
-          </Grid>
-          <Grid item xs={12}>
-            <FormControl className={classes.margin} style={{ width: "200px" }}>
-              <InputLabel htmlFor="status">Status</InputLabel>
-              <NativeSelect
-                id="statusSelectBox"
-                value={status}
-                name="status"
-                inputRef={register({ required: true })}
-                onChange={handleStatusChange}
-                input={<BootstrapInput />}
-              >
-                <option value="Active">Active</option>
-                <option value="Inactive">Inactive</option>
-              </NativeSelect>
-            </FormControl>
           </Grid>
           <Grid item xs={12}>
             <Button

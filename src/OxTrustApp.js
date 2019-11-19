@@ -39,8 +39,6 @@ import RaduisClientsPage from "./components/pages/RaduisClientsPage";
 
 import ClientAddPage from "./components/pages/ClientAddPage";
 
-import AttribueAddPage from "./components/pages/AttributeAddPage";
-
 import RaduisServerConfigPage from "./components/pages/RaduisServerConfigPage";
 
 import NotFoundPage from "./components/pages/NotFoundPage";
