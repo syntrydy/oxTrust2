@@ -46,10 +46,22 @@ const newMenuItems = [
     path: "/attributes"
   },
   {
+    key: "scripts",
+    label: "Custom Scripts",
+    icon: "ac_unit",
+    path: "/scripts"
+  },
+  {
     key: "certificates",
     label: "Certificates",
     icon: "school",
     path: "/certificates"
+  },
+  {
+    key: "logs",
+    label: "Logs",
+    icon: "timeline",
+    path: "/logs"
   },
   {
     key: "config",
@@ -57,7 +69,11 @@ const newMenuItems = [
     icon: "settings",
     path: "#",
     subMenus: [
-      { key: "basic", label: "Basic", icon: "crop", path: "/config/basic" },
+      { key: "organization", label: "Organization", icon: "apartment", path: "/config/org" },
+      { key: "authentication", label: "Authentication", icon: "control_camera", path: "/config/authentication" },
+      { key: "registration", label: "Registration", icon: "how_to_reg", path: "/config/registration" },
+      { key: "cacherefresh", label: "Cache Refresh", icon: "device_hub", path: "/config/cacherefresh" },
+      { key: "json", label: "JSON", icon: "linear_scale", path: "/config/json" },
       {
         key: "advanced",
         label: "Advanced",
