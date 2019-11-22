@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import MaterialTable from "material-table";
-import OxTitle from "../layouts/OxTitle";
+import OxTitle from "../../layouts/OxTitle";
 import { withRouter } from "react-router-dom";
-import AcceptDialog from "../layouts/OxAcceptDialog";
+import AcceptDialog from "../../layouts/OxAcceptDialog";
 const OpenIdScopeList = props => {
   const items = [
     {

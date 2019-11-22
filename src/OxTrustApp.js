@@ -1,52 +1,55 @@
 import React from "react";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import OxDrawer from "./components/layouts/OxDrawer";
-import OxAppBar from "./components/layouts/OxAppBar";
+import OxDrawer from "./layouts/OxDrawer";
+import OxAppBar from "./layouts/OxAppBar";
 import routes from "./routes.js";
 import useStyles from "./assets/jss/oxStyle";
-import HomePage from "./components/pages/HomePage";
+import HomePage from "./pages/HomePage";
 
-import GroupsPage from "./components/pages/GroupsPage";
-import GroupDetailPage from "./components/pages/GroupDetailPage";
-import GroupEditPage from "./components/pages/GroupEditPage";
-import GroupAddPage from "./components/pages/GroupAddPage";
+import GroupsPage from "./pages/group/GroupsPage";
+import GroupDetailPage from "./pages/group/GroupDetailPage";
+import GroupEditPage from "./pages/group/GroupEditPage";
+import GroupAddPage from "./pages/group/GroupAddPage";
 
-import UsersPage from "./components/pages/UsersPage";
-import UserAddPage from "./components/pages/UserAddPage";
-import TrustsPage from "./components/pages/TrustsPage";
+import UsersPage from "./pages/user/UsersPage";
+import UserAddPage from "./pages/user/UserAddPage";
+import UserEditPage from "./pages/user/UserEditPage";
+import TrustsPage from "./pages/saml/TrustsPage";
 
-import AcrsPage from "./components/pages/ArcsPage";
+import AcrsPage from "./pages/saml/ArcsPage";
 
-import CertificatesPage from "./components/pages/CertificatesPage";
+import CertificatesPage from "./pages/CertificatesPage";
 
-import AttributePage from "./components/pages/AttributesPage";
+import AttributePage from "./pages/attribute/AttributesPage";
+import AttributeAddPage from "./pages/attribute/AttributeAddPage";
+import AttributeEditPage from "./pages/attribute/AttributeEditPage";
 
-import OpenIdClientsPage from "./components/pages/OpenIdClientsPage";
-import OpenIdClientDetailPage from "./components/pages/OpenIdClientDetailPage";
-import OpenIdClientEditPage from "./components/pages/OpenIdClientEditPage";
+import OpenIdClientsPage from "./pages/client/OpenIdClientsPage";
+import OpenIdClientDetailPage from "./pages/client/OpenIdClientDetailPage";
+import OpenIdClientEditPage from "./pages/client/OpenIdClientEditPage";
 
-import OpenIdScopesPage from "./components/pages/OpenIdScopesPage";
-import OpenIdScopeDetailPage from "./components/pages/OpenIdScopeDetailPage";
-import OpenIdScopeEditPage from "./components/pages/OpenIdScopeEditPage";
+import OpenIdScopesPage from "./pages/scope/OpenIdScopesPage";
+import OpenIdScopeAddPage from "./pages/scope/OpenIdScopeAddPage";
+import OpenIdScopeDetailPage from "./pages/scope/OpenIdScopeDetailPage";
+import OpenIdScopeEditPage from "./pages/scope/OpenIdScopeEditPage";
 
-import UmaResourcesPage from "./components/pages/UmaResourcesPage";
-import UmaScopesPage from "./components/pages/UmaScopesPage";
+import UmaResourcesPage from "./pages/uma/UmaResourcesPage";
+import UmaScopesPage from "./pages/uma/UmaScopesPage";
 
-import PassportProvidersPage from "./components/pages/PassportProvidersPage";
+import PassportProvidersPage from "./pages/passport/PassportProvidersPage";
 
-import RaduisClientsPage from "./components/pages/RaduisClientsPage";
+import RaduisClientsPage from "./pages/raduis/RaduisClientsPage";
 
-import ClientAddPage from "./components/pages/ClientAddPage";
+import ClientAddPage from "./pages/client/ClientAddPage";
 
-import RaduisServerConfigPage from "./components/pages/RaduisServerConfigPage";
+import RaduisServerConfigPage from "./pages/raduis/RaduisServerConfigPage";
 
-import NotFoundPage from "./components/pages/NotFoundPage";
+import NotFoundPage from "./pages/NotFoundPage";
 
 import { ThemeProvider } from "@material-ui/styles";
 import theme from "./theme/Theme";
 import { createBrowserHistory } from "history";
-import AttributeAddPage from "./components/pages/AttributeAddPage";
 
 const hist = createBrowserHistory();
 
@@ -93,8 +96,9 @@ export default function MyDrawer() {
 
               <Route path="/users" exact component={UsersPage} />
               <Route path="/user/add" exact component={UserAddPage} />
+              <Route path="/user/edit:gid" exact component={UserEditPage} />
 
-              <Route path="/saml/trusts" exact component={TrustsPage} />
+              <Route path="/apps/saml" exact component={TrustsPage} />
 
               <Route path="/saml/acrs" exact component={AcrsPage} />
 
@@ -102,12 +106,8 @@ export default function MyDrawer() {
 
               <Route path="/uma/scopes" exact component={UmaScopesPage} />
 
-              <Route
-                path="/openid/clients"
-                exact
-                component={OpenIdClientsPage}
-              />
-              
+              <Route path="/apps/openid" exact component={OpenIdClientsPage} />
+
               <Route
                 path="/openid/client/edit:gid"
                 exact
@@ -129,7 +129,7 @@ export default function MyDrawer() {
               <Route
                 path="/openid/scope/add"
                 exact
-                component={OpenIdClientsPage}
+                component={OpenIdScopeAddPage}
               />
               <Route
                 path="/openid/scope/edit:gid"
@@ -143,6 +143,12 @@ export default function MyDrawer() {
               />
               <Route path="/attributes" exact component={AttributePage} />
               <Route path="/attribute/add" exact component={AttributeAddPage} />
+              <Route
+                path="/attribute/edit:gid"
+                exact
+                component={AttributeEditPage}
+              />
+
               <Route path="/certificates" exact component={CertificatesPage} />
               <Route
                 path="/passport/providers"

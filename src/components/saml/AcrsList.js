@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import MaterialTable from "material-table";
-import OxTitle from "../layouts/OxTitle";
+import OxTitle from "../../layouts/OxTitle";
 import { withRouter } from "react-router-dom";
-import AcceptDialog from "../layouts/OxAcceptDialog";
+import AcceptDialog from "../../layouts/OxAcceptDialog";
 const AcrsList = props => {
   const items = [
     {
@@ -32,7 +32,7 @@ const AcrsList = props => {
   }
   function goToTrustsPage() {
     const { history } = props;
-    if (history) history.push("/saml/trusts");
+    if (history) history.push("/apps/saml");
   }
   function showDialogBox(name) {
     setRow(name);

@@ -1,164 +1,163 @@
 import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
-import Stepper from "@material-ui/core/Stepper";
-import Step from "@material-ui/core/Step";
-import StepLabel from "@material-ui/core/StepLabel";
 import Button from "@material-ui/core/Button";
-import Typography from "@material-ui/core/Typography";
 import useForm from "react-hook-form";
 import Grid from "@material-ui/core/Grid";
-import ClientFormBasic from "../openidclient/ClientFormBasic";
-import ClientFormAdvanced from "../openidclient/ClientFormAdvanced";
-import SaveIcon from '@material-ui/icons/Save';
-
-const useStyles = makeStyles(theme => ({
-  root: {
-    width: "100%"
-  },
-  button: {
-    marginRight: theme.spacing(1)
-  },
-  instructions: {
-    marginTop: theme.spacing(1),
-    marginBottom: theme.spacing(1)
-  }
-}));
-function getSteps() {
-  return ["Basic", "Advanced", "Encryption/Signing"];
-}
+import TextField from "@material-ui/core/TextField";
+import OxInput from "../../layouts/OxInput";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import FormControl from "@material-ui/core/FormControl";
+import InputLabel from "@material-ui/core/InputLabel";
+import NativeSelect from "@material-ui/core/NativeSelect";
+import Switch from "@material-ui/core/Switch";
+import SaveIcon from "@material-ui/icons/Save";
 
 const ClientForm = () => {
-  const classes = useStyles();
-  const [activeStep, setActiveStep] = React.useState(0);
-  const [skipped, setSkipped] = React.useState(new Set());
+  const loginRedirects = ["www.gasmyr.com"];
   const { handleSubmit, register, errors } = useForm();
   const onSubmit = values => {
     console.log(values);
   };
-  function getStepContent(step) {
-    switch (step) {
-      case 0:
-        return <ClientFormBasic register={register} errors={errors}/>;
-      case 1:
-        return <ClientFormAdvanced register={register} errors={errors}/>;
-      case 2:
-        return <ClientFormAdvanced register={register} errors={errors}/>;
-      default:
-        return "Unknown step";
-    }
-  }
-  const steps = getSteps();
-  const isStepOptional = step => {
-    return step === 1;
+  const [state, setState] = React.useState({
+    checkedA: true,
+    checkedB: true
+  });
+  const [clientType, setType] = React.useState(null);
+  const [subjectType, setSubjectType] = React.useState(null);
+  const handleChange = name => event => {
+    setState({ ...state, [name]: event.target.checked });
   };
-
-  const isStepSkipped = step => {
-    return skipped.has(step);
+  const handleClientTypeChange = name => event => {
+    setType(event.target.value);
   };
-
-  const handleNext = () => {
-    let newSkipped = skipped;
-    if (isStepSkipped(activeStep)) {
-      newSkipped = new Set(newSkipped.values());
-      newSkipped.delete(activeStep);
-    }
-
-    setActiveStep(prevActiveStep => prevActiveStep + 1);
-    setSkipped(newSkipped);
+  const handleClientSubjectTypeChange = name => event => {
+    setSubjectType(event.target.value);
   };
-  const handleBack = () => {
-    setActiveStep(prevActiveStep => prevActiveStep - 1);
-  };
-
-  const handleSkip = () => {
-    if (!isStepOptional(activeStep)) {
-      throw new Error("You can't skip a step that isn't optional.");
-    }
-    setActiveStep(prevActiveStep => prevActiveStep + 1);
-    setSkipped(prevSkipped => {
-      const newSkipped = new Set(prevSkipped.values());
-      newSkipped.add(activeStep);
-      return newSkipped;
-    });
-  };
-  const handleReset = () => {
-    setActiveStep(0);
-  };
-
   return (
-    <Paper className={classes.root} elevation={4}>
-      <form onSubmit={handleSubmit(onSubmit)} style={{ padding: "25px" }}>
-        <div className={classes.root}>
-          <Stepper activeStep={activeStep}>
-            {steps.map((label, index) => {
-              const stepProps = {};
-              const labelProps = {};
-              if (isStepOptional(index)) {
-                labelProps.optional = (
-                  <Typography variant="caption">Optional</Typography>
-                );
+    <Paper elevation={4}>
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        style={{
+          marginLeft: "10%",
+          marginRight: "10%",
+          paddingTop: "20px",
+          paddingBottom: "20px"
+        }}
+      >
+        <Grid container spacing={1}>
+          <Grid item xs={12}>
+            <TextField
+              id="clientName"
+              name="clientName"
+              style={{ width: "100%" }}
+              label="Client name"
+              inputRef={register({ required: true, maxlength: 20 })}
+              margin="normal"
+              variant="outlined"
+            />
+            {errors.clientName && "Client name is required"}
+          </Grid>
+          <Grid item xs={12}>
+            <TextField
+              id="description"
+              style={{ width: "100%" }}
+              name="description"
+              multiline
+              label="Description"
+              margin="normal"
+              inputRef={register({ required: true })}
+              variant="outlined"
+            />
+          </Grid>
+          <Grid item xs={4}>
+            <FormControl>
+              <InputLabel htmlFor="clientType">Type</InputLabel>
+              <NativeSelect
+                id="clientType"
+                value={clientType}
+                name="clientType"
+                inputRef={register({ required: true })}
+                onChange={handleClientTypeChange}
+                input={<OxInput />}
+              >
+                <option value="web">Web</option>
+                <option value="native">Native</option>
+              </NativeSelect>
+            </FormControl>
+            <FormControl>
+              <InputLabel htmlFor="clientType">Subject Type</InputLabel>
+              <NativeSelect
+                id="subjectType"
+                value={subjectType}
+                name="subjectType"
+                inputRef={register({ required: true })}
+                onChange={handleClientSubjectTypeChange}
+                input={<OxInput />}
+              >
+                <option value="pairwise">pairwise</option>
+                <option value="public">public</option>
+              </NativeSelect>
+            </FormControl>
+          </Grid>
+          <Grid item xs={8}>
+            <FormControlLabel
+              control={
+                <Switch
+                  checked={state.checkedA}
+                  inputRef={register({ required: true })}
+                  onChange={handleChange("checkedA")}
+                  value="checkedA"
+                  name="persistClientAuth"
+                  color="primary"
+                />
               }
-              if (isStepSkipped(index)) {
-                stepProps.completed = false;
+              label="Persist Client Authorizations"
+            />
+            <FormControlLabel
+              control={
+                <Switch
+                  checked={state.checkedB}
+                  inputRef={register({ required: true })}
+                  onChange={handleChange("checkedB")}
+                  value="checkedB"
+                  name="preAuthorization"
+                  color="primary"
+                />
               }
-              return (
-                <Step key={label} {...stepProps}>
-                  <StepLabel {...labelProps}>{label}</StepLabel>
-                </Step>
-              );
-            })}
-          </Stepper>
-          <div>
-            {activeStep === steps.length ? (
-              <div>
-                <Typography className={classes.instructions}>
-                  All steps completed - you&apos;re finished
-                </Typography>
-                <Button onClick={handleReset} className={classes.button}>
-                  Reset
-                </Button>
+              label="Pre-Authorization"
+            />
+          </Grid>
+          <Grid item xs={4}>
+            <InputLabel htmlFor="clientType">Login Redirect URIs:</InputLabel>
+          </Grid>
+          <Grid item xs={8}>
+            {loginRedirects.map((uri, key) => (
+              <div className="row" style={{ float: "right" }}>
+                <input type="url" value={uri}></input>
+                <button type="button">X</button>
               </div>
-            ) : (
-              <div>
-                <Typography className={classes.instructions}>
-                  {getStepContent(activeStep)}
-                </Typography>
-                <div>
-                  <Button
-                    disabled={activeStep === 0}
-                    onClick={handleBack}
-                    className={classes.button}
-                  >
-                    Back
-                  </Button>
-                  {isStepOptional(activeStep) && (
-                    <Button
-                      variant="contained"
-                      color="primary"
-                      onClick={handleSkip}
-                      className={classes.button}
-                    >
-                      Skip
-                    </Button>
-                  )}
-                  <Button
-                    variant="contained"
-                    color="primary"
-                    onClick={handleNext}
-                    className={classes.button}
-                  >
-                    {activeStep === steps.length - 1 ? "Finish" : "Next"}
-                  </Button>
-                </div>
-              </div>
-            )}
-          </div>
-        </div>
-        <Grid item xs={12}>
+            ))}
+          
+            <div className="row" style={{ float: "right" }}>
+              <button type="button">Add</button>
+            </div>
+          </Grid>
+          <Grid item xs={12}>
+            <TextField
+              id="logoutRedirectUris"
+              style={{ width: "100%" }}
+              name="logoutRedirectUris"
+              label="Logout Redirect URIs"
+              margin="normal"
+              inputRef={register({ required: true })}
+              variant="outlined"
+            />
+          </Grid>
+          <Grid item xs={12}>
             <Button
-              size="small"
+              size="meduim"
               type="submit"
+              style={{ marginTop: "3%", marginBottom: "3%" }}
               variant="contained"
               color="primary"
               startIcon={<SaveIcon />}
@@ -166,6 +165,7 @@ const ClientForm = () => {
               Save
             </Button>
           </Grid>
+        </Grid>
       </form>
     </Paper>
   );

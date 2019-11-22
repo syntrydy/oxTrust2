@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import MaterialTable from "material-table";
-import OxTitle from "../layouts/OxTitle";
+import OxTitle from "../../layouts/OxTitle";
 import { withRouter } from "react-router-dom";
 const CertificatesList = props => {
   const items = [];

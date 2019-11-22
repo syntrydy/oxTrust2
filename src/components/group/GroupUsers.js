@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import MaterialTable from "material-table";
-import OxTitle from "../layouts/OxTitle";
+import OxTitle from "../../layouts/OxTitle";
 import Chip from "@material-ui/core/Chip";
 import { withRouter } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
