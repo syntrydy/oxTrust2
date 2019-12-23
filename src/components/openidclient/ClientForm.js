@@ -137,7 +137,7 @@ const ClientForm = () => {
                 <button type="button">X</button>
               </div>
             ))}
-          
+
             <div className="row" style={{ float: "right" }}>
               <button type="button">Add</button>
             </div>

@@ -108,7 +108,7 @@ const OxAppBar = props => {
     >
       <Toolbar>
         <IconButton
-          color="secondary"
+          color="inherit"
           aria-label="open drawer"
           onClick={handleDrawerOpen}
           edge="start"
@@ -136,12 +136,12 @@ const OxAppBar = props => {
         </div>
         <div className={classes.grow} />
         <div className={classes.sectionDesktop}>
-          <IconButton aria-label="show 4 new mails" color="secondary">
+          <IconButton aria-label="show 4 new mails" color="inherit">
             <Badge badgeContent={4} color="secondary">
               <MailIcon />
             </Badge>
           </IconButton>
-          <IconButton aria-label="show 17 new notifications" color="secondary">
+          <IconButton aria-label="show 17 new notifications" color="inherit">
             <Badge badgeContent={17} color="secondary">
               <NotificationsIcon />
             </Badge>
@@ -152,7 +152,7 @@ const OxAppBar = props => {
             aria-controls={menuId}
             aria-haspopup="true"
             onClick={handleProfileMenuOpen}
-            color="secondary"
+            color="inherit"
           >
             <AccountCircle />
           </IconButton>
@@ -163,7 +163,7 @@ const OxAppBar = props => {
             aria-controls={mobileMenuId}
             aria-haspopup="true"
             onClick={handleMobileMenuOpen}
-            color="secondary"
+            color="inherit"
           >
             <MoreIcon />
           </IconButton>

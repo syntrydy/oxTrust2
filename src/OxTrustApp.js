@@ -15,6 +15,7 @@ import GroupAddPage from "./pages/group/GroupAddPage";
 import UsersPage from "./pages/user/UsersPage";
 import UserAddPage from "./pages/user/UserAddPage";
 import UserEditPage from "./pages/user/UserEditPage";
+import UserProfilePage from "./pages/user/UserProfilePage";
 import TrustsPage from "./pages/saml/TrustsPage";
 
 import AcrsPage from "./pages/saml/ArcsPage";
@@ -95,6 +96,7 @@ export default function MyDrawer() {
               />
 
               <Route path="/users" exact component={UsersPage} />
+              <Route path="/profile" exact component={UserProfilePage} />
               <Route path="/user/add" exact component={UserAddPage} />
               <Route path="/user/edit:gid" exact component={UserEditPage} />
 

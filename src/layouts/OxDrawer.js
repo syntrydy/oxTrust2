@@ -15,10 +15,10 @@ const newMenuItems = [
     icon: "drag_indicator",
     path: "/"
   },
-  { key: "groups", label: "Manages Groups", icon: "people", path: "/groups" },
+  { key: "users", label: "Manages Users", icon: "people", path: "/users" },
   {
-    key: "app",
-    label: "Application",
+    key: "sso",
+    label: "SSO",
     icon: "apps",
     path: "#",
     subMenus: [
@@ -32,13 +32,29 @@ const newMenuItems = [
     ]
   },
   {
-    key: "passport",
-    label: "Passport",
-    icon: "card_giftcard",
-    path: "/passport/providers"
+    key: "authorization",
+    label: "Authorization",
+    icon: "business_center",
+    path: "#",
+    subMenus: [
+      { key: "uma", label: "UMA", icon: "usb", path: "/uma/resources" }
+    ]
   },
-  { key: "uma", label: "UMA", icon: "usb", path: "/uma/resources" },
-  { key: "raduis", label: "Raduis", icon: "tune", path: "/raduis/config" },
+  {
+    key: "authentication",
+    label: "Authentication",
+    icon: "sports_hockey",
+    path: "#",
+    subMenus: [
+      {
+        key: "passport",
+        label: "Passport",
+        icon: "card_giftcard",
+        path: "/passport/providers"
+      },
+      { key: "raduis", label: "Raduis", icon: "tune", path: "/raduis/config" }
+    ]
+  },
   {
     key: "attributes",
     label: "Attributes",
@@ -69,31 +85,37 @@ const newMenuItems = [
     icon: "settings",
     path: "#",
     subMenus: [
-      { key: "organization", label: "Organization", icon: "apartment", path: "/config/org" },
-      { key: "authentication", label: "Authentication", icon: "control_camera", path: "/config/authentication" },
-      { key: "registration", label: "Registration", icon: "how_to_reg", path: "/config/registration" },
-      { key: "cacherefresh", label: "Cache Refresh", icon: "device_hub", path: "/config/cacherefresh" },
-      { key: "json", label: "JSON", icon: "linear_scale", path: "/config/json" },
       {
-        key: "advanced",
-        label: "Advanced",
-        icon: "compare",
-        path: "#",
-        subMenus: [
-          {
-            key: "json",
-            label: "JSON",
-            icon: "info",
-            path: "/config/advanced/json"
-          },
-          {
-            key: "log",
-            label: "Log file",
-            icon: "info",
-            path: "/config/advanced/log"
-          }
-        ]
+        key: "organization",
+        label: "Organization",
+        icon: "apartment",
+        path: "/config/org"
       },
+      {
+        key: "authentication",
+        label: "Authentication",
+        icon: "control_camera",
+        path: "/config/authentication"
+      },
+      {
+        key: "registration",
+        label: "Registration",
+        icon: "how_to_reg",
+        path: "/config/registration"
+      },
+      {
+        key: "cacherefresh",
+        label: "Cache Refresh",
+        icon: "device_hub",
+        path: "/config/cacherefresh"
+      },
+      {
+        key: "json",
+        label: "JSON",
+        icon: "linear_scale",
+        path: "/config/json"
+      },
+      
       {
         key: "security",
         label: "Security",

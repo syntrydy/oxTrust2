@@ -33,6 +33,7 @@ const useStyles = makeStyles(theme => {
     },
     item: {
       minWidth: 0,
+      minHeight: 20,
       // set width
       width: 230,
       // item text color
